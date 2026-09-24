@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Everyday Swedish Vocabulary · Swedish → English → Hindi</title>
+  <meta name="description" content="Interactive Swedish-English-Hindi vocabulary browser for daily life in Sweden, with category dropdowns, levels, pronunciation, examples, and grammar notes.">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230b3b4a'/%3E%3Cpath d='M12 19h40v8H12zM12 37h40v8H12z' fill='%23f6c453'/%3E%3Cpath d='M25 9h8v46h-8z' fill='%23f6c453'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="brandmark" aria-hidden="true">SV</div>
+    <div>
+      <p class="eyebrow">Swedish → English → Hindi</p>
+      <h1>Everyday Swedish Vocabulary</h1>
+      <p class="lede">Browse practical Swedish for daily life in Sweden with category dropdowns, A1–B1 levels, Hindi meanings, pronunciation guides, and simple examples.</p>
+    </div>
+  </header>
+
+  <main>
+    <section class="study-panel" aria-labelledby="study-title">
+      <div class="panel-head">
+        <div>
+          <h2 id="study-title">Vocabulary browser</h2>
+          <p>Choose a category or level, then search in Swedish, English, or Hindi.</p>
+        </div>
+        <div class="stats" aria-live="polite">
+          <strong id="visibleCount">0</strong>
+          <span>shown</span>
+        </div>
+      </div>
+
+      <div class="controls" role="search">
+        <label>
+          Category
+          <select id="categorySelect"></select>
+        </label>
+        <label>
+          Level
+          <select id="levelSelect">
+            <option value="all">All levels</option>
+            <option value="A1">A1 – Absolute beginner</option>
+            <option value="A2">A2 – Basic everyday Swedish</option>
+            <option value="B1">B1 – Intermediate everyday Swedish</option>
+          </select>
+        </label>
+        <label>
+          Study set
+          <select id="setSelect">
+            <option value="all">Full vocabulary</option>
+            <option value="quick">Quick reference · 500 essentials</option>
+          </select>
+        </label>
+        <label>
+          Type
+          <select id="typeSelect">
+            <option value="all">All types</option>
+            <option value="noun">Nouns</option>
+            <option value="verb">Verbs</option>
+            <option value="phrase">Phrases</option>
+            <option value="number">Numbers</option>
+            <option value="word">Other words</option>
+          </select>
+        </label>
+        <label class="search-label">
+          Search
+          <input id="searchInput" type="search" placeholder="Try mjölk, bus, धन्यवाद…" autocomplete="off">
+        </label>
+      </div>
+
+      <div class="toolbar">
+        <div class="chips" id="chapterChips" aria-label="Chapter shortcuts"></div>
+        <div class="view-actions" role="group" aria-label="View mode">
+          <button class="view-button active" id="cardsView" type="button">Cards</button>
+          <button class="view-button" id="tableView" type="button">Table</button>
+        </div>
+      </div>
+
+      <div id="emptyState" class="empty" hidden>No matching vocabulary found. Try a broader category or clear the search.</div>
+      <section id="cards" class="card-grid" aria-label="Vocabulary cards"></section>
+      <section id="tableWrap" class="table-wrap" aria-label="Vocabulary table" hidden>
+        <table>
+          <thead>
+            <tr><th>Swedish</th><th>English</th><th>Hindi</th><th>Forms</th><th>Example</th></tr>
+          </thead>
+          <tbody id="tableBody"></tbody>
+        </table>
+      </section>
+    </section>
+
+    <section class="grammar" aria-labelledby="grammar-title">
+      <div>
+        <p class="eyebrow">Beginner guide</p>
+        <h2 id="grammar-title">Important Swedish grammar notes</h2>
+      </div>
+      <div id="grammarNotes" class="note-grid"></div>
+    </section>
+  </main>
+
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
