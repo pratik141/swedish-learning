@@ -22,6 +22,7 @@ on:
 jobs:
   validate-and-suggest:
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -30,11 +31,25 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: "22"
+          cache: npm
+          cache-dependency-path: swedish-vocab-site/package-lock.json
+
+      - name: Install site dependencies
+        working-directory: swedish-vocab-site
+        run: npm ci
+
+      - name: Build vocabulary site
+        working-directory: swedish-vocab-site
+        run: npm run build
 
       - name: Validate vocabulary chunks
+        env:
+          VOCAB_DIST_DIR: swedish-vocab-site/dist
         run: node scripts/validate-vocabulary.mjs
 
       - name: Generate weekly word suggestions
+        env:
+          VOCAB_DIST_DIR: swedish-vocab-site/dist
         run: node scripts/suggest-new-words.mjs
 
       - name: Upload word suggestion report
