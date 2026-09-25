@@ -16,6 +16,7 @@
       <h1>Everyday Swedish Vocabulary</h1>
       <p class="lede">Browse practical Swedish for daily life in Sweden with category dropdowns, A1–B1 levels, Hindi meanings, pronunciation guides, and simple examples.</p>
     </div>
+    <button class="theme-toggle" id="themeToggle" type="button" aria-pressed="false">Dark theme</button>
   </header>
 
   <main>
@@ -77,6 +78,7 @@
         </div>
       </div>
 
+      <div id="loadingState" class="empty" hidden>Loading this vocabulary component…</div>
       <div id="emptyState" class="empty" hidden>No matching vocabulary found. Try a broader category or clear the search.</div>
       <section id="cards" class="card-grid" aria-label="Vocabulary cards"></section>
       <section id="tableWrap" class="table-wrap" aria-label="Vocabulary table" hidden>
@@ -98,7 +100,6 @@
     </section>
   </main>
 
-  <script src="data.js"></script>
   <script src="app.js"></script>
 </body>
 </html>
