@@ -15,6 +15,9 @@ on:
     - cron: "0 6 * * 1"
   workflow_dispatch:
 
+permissions:
+  contents: write
+
 jobs:
   validate-and-suggest:
     runs-on: ubuntu-latest
@@ -37,6 +40,20 @@ jobs:
         env:
           VOCAB_DIST_DIR: docs
         run: node scripts/suggest-new-words.mjs
+
+      - name: Commit updated suggestions
+        if: github.event_name != 'pull_request'
+        run: |
+          if git diff --quiet -- reports/vocabulary_suggestions.md; then
+            echo "No changes to the suggestion report."
+            exit 0
+          fi
+
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add reports/vocabulary_suggestions.md
+          git commit -m "chore: update vocabulary suggestions"
+          git push
 
       - name: Upload word suggestion report
         uses: actions/upload-artifact@v4
