@@ -1,10 +1,9 @@
 import { mkdir, readFile, readdir, writeFile } from "node:fs/promises";
 import path from "node:path";
-import { fileURLToPath } from "node:url";
+import { resolveVocabularyPaths } from "./vocabulary-paths.mjs";
 
-const distRoot = new URL("../dist/", import.meta.url);
-const outDir = new URL("../reports/", import.meta.url);
-const chunkDir = new URL("data/chunks/", distRoot);
+const { reportDir, chunkDirUrl } = await resolveVocabularyPaths();
+const chunkDir = chunkDirUrl;
 
 const candidateBank = [
   ["A1", "Fruits", "en clementin", "clementine", "क्लेमेंटाइन"],
@@ -37,7 +36,7 @@ for (const file of files) {
 
 const suggestions = candidateBank.filter(([, , swedish]) => !existing.has(swedish.toLocaleLowerCase("sv-SE")));
 
-await mkdir(outDir, { recursive: true });
+await mkdir(reportDir, { recursive: true });
 const body = [
   "# Vocabulary suggestions",
   "",
@@ -50,6 +49,6 @@ const body = [
   "",
 ].join("\n");
 
-const outPath = new URL("vocabulary_suggestions.md", outDir);
+const outPath = path.join(reportDir, "vocabulary_suggestions.md");
 await writeFile(outPath, body, "utf8");
-console.log(`Wrote ${suggestions.length} suggestions to ${fileURLToPath(outPath)}`);
+console.log(`Wrote ${suggestions.length} suggestions to ${outPath}`);

@@ -4,12 +4,16 @@ on:
   push:
     paths:
       - "dist/**"
+      - "swedish-vocab-site/dist/**"
       - "scripts/**"
+      - "swedish-vocab-site/scripts/**"
       - ".github/workflows/vocabulary-ci.yml"
   pull_request:
     paths:
       - "dist/**"
+      - "swedish-vocab-site/dist/**"
       - "scripts/**"
+      - "swedish-vocab-site/scripts/**"
       - ".github/workflows/vocabulary-ci.yml"
   schedule:
     - cron: "0 6 * * 1"
@@ -37,4 +41,6 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: vocabulary-suggestions
-          path: reports/vocabulary_suggestions.md
+          path: |
+            reports/vocabulary_suggestions.md
+            swedish-vocab-site/reports/vocabulary_suggestions.md

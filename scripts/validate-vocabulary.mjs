@@ -1,11 +1,9 @@
 import { readFile, readdir } from "node:fs/promises";
-import path from "node:path";
-import { fileURLToPath } from "node:url";
+import { resolveVocabularyPaths } from "./vocabulary-paths.mjs";
 
-const siteRoot = new URL("../", import.meta.url);
-const distRoot = new URL("../dist/", import.meta.url);
-const manifest = JSON.parse(await readFile(new URL("data/manifest.json", distRoot), "utf8"));
-const chunkDir = new URL("data/chunks/", distRoot);
+const { siteRoot, manifestUrl, chunkDirUrl } = await resolveVocabularyPaths();
+const manifest = JSON.parse(await readFile(manifestUrl, "utf8"));
+const chunkDir = chunkDirUrl;
 const files = (await readdir(chunkDir)).filter((name) => name.endsWith(".json")).sort();
 
 const expected = new Set(manifest.chapters.map((chapter) => `${chapter.slug}.json`));
@@ -69,7 +67,7 @@ if (errors.length) {
   process.exit(1);
 }
 
-console.log(`Vocabulary validation passed from ${fileURLToPath(siteRoot)}.`);
+console.log(`Vocabulary validation passed from ${siteRoot}.`);
 console.log(`Chunks: ${files.length}`);
 console.log(`Items: ${total}`);
 console.log(`Quick reference: ${manifest.quickIds.length}`);
