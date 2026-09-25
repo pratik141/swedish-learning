@@ -3,17 +3,13 @@ name: Vocabulary CI
 on:
   push:
     paths:
-      - "dist/**"
-      - "swedish-vocab-site/dist/**"
+      - "docs/**"
       - "scripts/**"
-      - "swedish-vocab-site/scripts/**"
       - ".github/workflows/vocabulary-ci.yml"
   pull_request:
     paths:
-      - "dist/**"
-      - "swedish-vocab-site/dist/**"
+      - "docs/**"
       - "scripts/**"
-      - "swedish-vocab-site/scripts/**"
       - ".github/workflows/vocabulary-ci.yml"
   schedule:
     - cron: "0 6 * * 1"
@@ -31,31 +27,19 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: "22"
-          cache: npm
-          cache-dependency-path: swedish-vocab-site/package-lock.json
-
-      - name: Install site dependencies
-        working-directory: swedish-vocab-site
-        run: npm ci
-
-      - name: Build vocabulary site
-        working-directory: swedish-vocab-site
-        run: npm run build
 
       - name: Validate vocabulary chunks
         env:
-          VOCAB_DIST_DIR: swedish-vocab-site/dist
+          VOCAB_DIST_DIR: docs
         run: node scripts/validate-vocabulary.mjs
 
       - name: Generate weekly word suggestions
         env:
-          VOCAB_DIST_DIR: swedish-vocab-site/dist
+          VOCAB_DIST_DIR: docs
         run: node scripts/suggest-new-words.mjs
 
       - name: Upload word suggestion report
         uses: actions/upload-artifact@v4
         with:
           name: vocabulary-suggestions
-          path: |
-            reports/vocabulary_suggestions.md
-            swedish-vocab-site/reports/vocabulary_suggestions.md
+          path: reports/vocabulary_suggestions.md
