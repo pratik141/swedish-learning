@@ -1,0 +1,40 @@
+name: Vocabulary CI
+
+on:
+  push:
+    paths:
+      - "dist/**"
+      - "scripts/**"
+      - ".github/workflows/vocabulary-ci.yml"
+  pull_request:
+    paths:
+      - "dist/**"
+      - "scripts/**"
+      - ".github/workflows/vocabulary-ci.yml"
+  schedule:
+    - cron: "0 6 * * 1"
+  workflow_dispatch:
+
+jobs:
+  validate-and-suggest:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Validate vocabulary chunks
+        run: node scripts/validate-vocabulary.mjs
+
+      - name: Generate weekly word suggestions
+        run: node scripts/suggest-new-words.mjs
+
+      - name: Upload word suggestion report
+        uses: actions/upload-artifact@v4
+        with:
+          name: vocabulary-suggestions
+          path: reports/vocabulary_suggestions.md
