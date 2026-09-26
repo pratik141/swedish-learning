@@ -18,6 +18,7 @@ export async function resolveVocabularyPaths() {
   const envDist = process.env.VOCAB_DIST_DIR ? path.resolve(repoRoot, process.env.VOCAB_DIST_DIR) : null;
   const candidates = [
     envDist,
+    path.resolve(repoRoot, "docs"),
     path.resolve(scriptDir, "../dist"),
     path.resolve(repoRoot, "dist"),
     path.resolve(repoRoot, "swedish-vocab-site/dist"),

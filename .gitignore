@@ -1,2 +1,6 @@
 .openai/
 .DS_Store
+instance/
+__pycache__/
+*.py[cod]
+.env

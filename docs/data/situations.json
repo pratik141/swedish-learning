@@ -1,0 +1,146 @@
+[
+  {
+    "id": "intro",
+    "title": "Introducing yourself",
+    "goal": "Say who you are, where you are from, and what you do.",
+    "vocab": ["Hej, jag heter Anna.", "Jag kommer från Sverige.", "Jag studerar svenska."],
+    "dialogue": [
+      {"sv": "Hej, jag heter Anna.", "en": "Hi, my name is Anna.", "hi": "नमस्ते, मेरा नाम अन्ना है।"},
+      {"sv": "Jag kommer från Stockholm.", "en": "I am from Stockholm.", "hi": "मैं स्टॉकहोम से हूँ।"},
+      {"sv": "Jag studerar svenska på kvällarna.", "en": "I study Swedish in the evenings.", "hi": "मैं शाम को स्वीडिश पढ़ता हूँ।"}
+    ],
+    "prompt": "Which phrase is the natural way to say ‘my name is Anna’?",
+    "answer": "Hej, jag heter Anna.",
+    "options": ["Hej, jag heter Anna.", "Jag kommer till jobbet.", "Jag vill betala nu.", "Kan du hjälpa mig?"]
+  },
+  {
+    "id": "shop",
+    "title": "Shopping and paying",
+    "goal": "Ask for a price, buy something, and pay politely.",
+    "vocab": ["Hur mycket kostar den?", "Jag vill köpa en flaska vatten.", "Kan jag betala med kort?"],
+    "dialogue": [
+      {"sv": "Hej! Jag vill köpa en vattenflaska.", "en": "Hi! I want to buy a water bottle.", "hi": "नमस्ते! मैं एक पानी की बोतल खरीदना चाहता हूँ।"},
+      {"sv": "Den kostar 149 kronor.", "en": "It costs 149 kronor.", "hi": "यह 149 kronor का है।"},
+      {"sv": "Hur mycket kostar den i storlek?", "en": "How much is this one in size?", "hi": "इसकी कीमत क्या है?"},
+      {"sv": "Tack, jag tar den.", "en": "Thanks, I’ll take it.", "hi": "धन्यवाद, मैं इसे लेता हूँ।"}
+    ],
+    "prompt": "Which is the most natural way to ask the price?",
+    "answer": "Hur mycket kostar den?",
+    "options": ["Hur mycket kostar den?", "Jag är trött.", "Det är lite sent.", "Varifrån kommer du?"]
+  },
+  {
+    "id": "doctor",
+    "title": "Visiting a doctor",
+    "goal": "Describe symptoms and ask for help clearly.",
+    "vocab": ["Jag har ont i halsen.", "Kan jag få en tid?", "Jag behöver hjälp."],
+    "dialogue": [
+      {"sv": "Hej, jag behöver se en läkare.", "en": "Hello, I need to see a doctor.", "hi": "नमस्ते, मुझे डॉक्टर से मिलना है।"},
+      {"sv": "Jag har ont i halsen och känner mig trött.", "en": "I have a sore throat and feel tired.", "hi": "मुझे गले में दर्द है और मैं थका हुआ महसूस कर रहा हूँ।"},
+      {"sv": "Har du feber?", "en": "Do you have a fever?", "hi": "क्या तुम्हें बुखार है?"},
+      {"sv": "Ja, och jag behöver hjälp idag.", "en": "Yes, and I need help today.", "hi": "हाँ, और मुझे आज मदद चाहिए।"}
+    ],
+    "prompt": "Which phrase best matches a sore throat?",
+    "answer": "Jag har ont i halsen.",
+    "options": ["Jag har ont i halsen.", "Jag bor nära centrum.", "Jag vill ta bussen.", "Det finns ett problem."]
+  },
+  {
+    "id": "transport",
+    "title": "Public transport",
+    "goal": "Ask for directions and understand transport information.",
+    "vocab": ["Var ligger stationen?", "Vilken buss går mot centrum?", "En biljett till city, tack."],
+    "dialogue": [
+      {"sv": "Hej! Var ligger närmaste stationen?", "en": "Hi! Where is the nearest station?", "hi": "नमस्ते! निकटतम स्टेशन कहाँ है?"},
+      {"sv": "Bussen går var tionde minut.", "en": "The bus runs every ten minutes.", "hi": "बस हर दस मिनट पर चलती है।"},
+      {"sv": "Jag vill till centrum, tack.", "en": "I want to go to the centre, thank you.", "hi": "मैं सेंट्रल तक जाना चाहता हूँ, धन्यवाद।"}
+    ],
+    "prompt": "What is the best way to ask where the nearest station is?",
+    "answer": "Var ligger närmaste stationen?",
+    "options": ["Var ligger närmaste stationen?", "Jag har en fråga.", "Det är varmt idag.", "Jag behöver hjälp nu."]
+  },
+  {
+    "id": "home",
+    "title": "Renting a home",
+    "goal": "Talk about rent, rooms, and moving in.",
+    "vocab": ["Hur mycket är hyran?", "Lägenheten har två rum.", "När kan jag flytta in?"],
+    "dialogue": [
+      {"sv": "Hej, hur mycket är hyran?", "en": "Hello, how much is the rent?", "hi": "नमस्ते, किराया कितना है?"},
+      {"sv": "Lägenheten har två sovrum och ett kök.", "en": "The apartment has two bedrooms and a kitchen.", "hi": "अपार्टमेंट में दो बेडरूम और एक रसोई है।"},
+      {"sv": "Det går bra, jag kan flytta in i augusti.", "en": "That works, I can move in in August.", "hi": "ठीक है, मैं अगस्त में शिफ्ट कर सकता हूँ।"}
+    ],
+    "prompt": "Which sentence asks about the rent?",
+    "answer": "Hur mycket är hyran?",
+    "options": ["Hur mycket är hyran?", "Jag är sen.", "Jag behöver ett kort.", "Det regnar."]
+  },
+  {
+    "id": "work",
+    "title": "Workplace conversation",
+    "goal": "Speak clearly in a work or office setting.",
+    "vocab": ["När kan vi träffas?", "Jag har skickat filen.", "Kan du skicka uppdateringen?"],
+    "dialogue": [
+      {"sv": "Hej, kan vi ha en kort möte idag?", "en": "Hi, can we have a brief meeting today?", "hi": "नमस्ते, क्या आज हम छोटा मीटिंग कर सकते हैं?"},
+      {"sv": "Jag har skickat filen till dig.", "en": "I have sent the file to you.", "hi": "मैंने फाइल तुम्हें भेज दी है।"},
+      {"sv": "Tack, det hjälper mycket.", "en": "Thanks, that helps a lot.", "hi": "धन्यवाद, इससे बहुत मदद मिलती है।"}
+    ],
+    "prompt": "Which sentence asks for a quick meeting?",
+    "answer": "Kan vi ha en kort möte idag?",
+    "options": ["Kan vi ha en kort möte idag?", "Jag kommer snart.", "Hur går det?", "Maten är god."]
+  },
+  {
+    "id": "interview",
+    "title": "Job interview",
+    "goal": "Answer basic interview questions clearly and politely.",
+    "vocab": ["Jag har erfarenhet av kundservice.", "Jag är mycket motiverad.", "Jag ser fram emot samtalet."],
+    "dialogue": [
+      {"sv": "Berätta lite om dig själv.", "en": "Tell me a little about yourself.", "hi": "अपने बारे में थोड़ा बताइए।"},
+      {"sv": "Jag har erfarenhet av kundservice och teamarbete.", "en": "I have experience in customer service and teamwork.", "hi": "मुझे ग्राहक सेवा और टीमवर्क का अनुभव है।"},
+      {"sv": "Jag ser fram emot att lära mig mer.", "en": "I look forward to learning more.", "hi": "मैं और सीखने का इंतज़ार कर रहा हूँ।"}
+    ],
+    "prompt": "Which answer best matches a job interview?",
+    "answer": "Jag har erfarenhet av kundservice och teamarbete.",
+    "options": ["Jag har erfarenhet av kundservice och teamarbete.", "Det är ett bra kök.", "Var ligger stationen?", "Tack, jag tar den."]
+  },
+  {
+    "id": "neighbour",
+    "title": "Talking with neighbours",
+    "goal": "Introduce yourself and chat in a friendly way.",
+    "vocab": ["Hej, jag är din nya granne.", "Vill du ha kaffe?", "Trevligt att träffas."],
+    "dialogue": [
+      {"sv": "Hej, jag är din nya granne.", "en": "Hi, I am your new neighbour.", "hi": "नमस्ते, मैं आपका नया पड़ोसी हूँ।"},
+      {"sv": "Trevligt att träffas.", "en": "Nice to meet you.", "hi": "आपसे मिलकर खुशी हुई।"},
+      {"sv": "Vill du ha en kopp kaffe?", "en": "Would you like a cup of coffee?", "hi": "क्या आप कॉफी पियेंगे?"},
+      {"sv": "Ja, gärna!", "en": "Yes, please!", "hi": "हाँ, बिल्कुल!"}
+    ],
+    "prompt": "Which sentence is a polite introduction?",
+    "answer": "Hej, jag är din nya granne.",
+    "options": ["Hej, jag är din nya granne.", "Jag behöver en biljett.", "Jag har glömt mitt pass.", "Stanna inte där."]
+  },
+  {
+    "id": "office",
+    "title": "Calling a school or office",
+    "goal": "Ask for information and leave a polite message.",
+    "vocab": ["Hej, jag ringer angående en fråga.", "Kan du upprepa det?", "Tack för hjälpen."],
+    "dialogue": [
+      {"sv": "Hej, jag ringer angående en fråga.", "en": "Hello, I am calling about a question.", "hi": "नमस्ते, मैं एक सवाल के बारे में कॉल कर रहा हूँ।"},
+      {"sv": "Kan du upprepa det, tack?", "en": "Could you repeat that, please?", "hi": "क्या आप इसे दोहराकर बता सकते हैं?"},
+      {"sv": "Tack för hjälpen, hej då.", "en": "Thank you for your help, goodbye.", "hi": "आपकी मदद के लिए धन्यवाद, अलविदा।"}
+    ],
+    "prompt": "Which phrase is a polite call opener?",
+    "answer": "Hej, jag ringer angående en fråga.",
+    "options": ["Hej, jag ringer angående en fråga.", "Jag är trött.", "Jag vill köpa ett hus.", "Bussen går nu."]
+  },
+  {
+    "id": "emergency",
+    "title": "Emergency situation",
+    "goal": "Make a quick, clear emergency call or request.",
+    "vocab": ["Jag behöver hjälp nu.", "Det är en nödsituation.", "Var är närmaste sjukhus?"],
+    "dialogue": [
+      {"sv": "Jag behöver hjälp nu.", "en": "I need help now.", "hi": "मुझे अभी मदद चाहिए।"},
+      {"sv": "Det är en nödsituation.", "en": "This is an emergency.", "hi": "यह एक आपातकालीन स्थिति है।"},
+      {"sv": "Var ligger närmaste sjukhus?", "en": "Where is the nearest hospital?", "hi": "निकटतम अस्पताल कहाँ है?"},
+      {"sv": "Jag ringer 112.", "en": "I am calling 112.", "hi": "मैं 112 कॉल कर रहा हूँ।"}
+    ],
+    "prompt": "What is the correct emergency phrase?",
+    "answer": "Det är en nödsituation.",
+    "options": ["Det är en nödsituation.", "Jag går till butiken.", "Här är bara kaffe.", "Jag förstår inte."]
+  }
+]

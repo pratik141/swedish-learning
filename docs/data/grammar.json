@@ -1,0 +1,632 @@
+[
+  {
+    "group": "Nouns and noun phrases",
+    "intro": "Gender, definiteness, number, and the structure around a noun.",
+    "lessons": [
+      {
+        "title": "En and ett gender",
+        "rule": "Every Swedish count noun belongs to an en-word or an ett-word group. The article is part of the noun: en bil, ett hus.",
+        "why": "The article tells you which noun pattern you are using. Swedish uses the correct article as part of the noun phrase, so it has to be learned together with the noun.",
+        "commonMistakes": [
+          "Choosing the article by guessing meaning instead of learning the noun as a pair.",
+          "Using the same article for all nouns because the noun is familiar."
+        ],
+        "examples": [
+          {"sv": "en bok / ett brev", "en": "a book / a letter"},
+          {"sv": "Boken är ny.", "en": "The book is new."}
+        ],
+        "exceptions": [
+          "There is no perfectly reliable meaning rule. Some endings give clues, but they are not enough on their own. Learn the article with every noun."
+        ],
+        "exercise": {
+          "prompt": "Choose the correct article for the noun in a natural Swedish phrase.",
+          "options": ["en bok", "ett bok", "boken", "bok"],
+          "answer": "en bok",
+          "explanation": "bok is an en-word, so the natural indefinite form is en bok."
+        }
+      },
+      {
+        "title": "Indefinite and definite forms",
+        "rule": "Swedish often attaches the definite article to the noun: en stol becomes stolen and ett bord becomes bordet.",
+        "why": "The definite ending helps the listener know that the noun is specific and already known in the situation.",
+        "commonMistakes": [
+          "Leaving out the ending when the noun is specific.",
+          "Using the same form in every context without checking whether the noun is definite or indefinite."
+        ],
+        "examples": [
+          {"sv": "en katt → katten", "en": "a cat → the cat"},
+          {"sv": "ett äpple → äpplet", "en": "an apple → the apple"}
+        ],
+        "exceptions": [
+          "With an adjective, Swedish normally uses a separate article too: den röda bilen, det stora huset. Do not leave out the article in standard Swedish."
+        ],
+        "exercise": {
+          "prompt": "Which form is the correct definite version of ett bord?",
+          "options": ["bordet", "ett bord", "borden", "borda"],
+          "answer": "bordet",
+          "explanation": "ett nouns usually take the ending -et in the definite form."
+        }
+      },
+      {
+        "title": "Plural patterns",
+        "rule": "Common plural endings include -or, -ar, -er and -n, while some nouns have no ending: en flicka–flickor, en bil–bilar, ett äpple–äpplen, ett hus–hus.",
+        "why": "The plural pattern tells the listener that there is more than one item. A noun can look completely different in the plural, so the pattern must be learned together with the word.",
+        "commonMistakes": [
+          "Adding only -s when the noun belongs to a different plural pattern.",
+          "Forgetting that some nouns have vowel changes or no ending at all."
+        ],
+        "examples": [
+          {"sv": "en bok – böcker", "en": "a book – books"},
+          {"sv": "ett barn – barn", "en": "a child – children"}
+        ],
+        "exceptions": [
+          "Vowel changes and irregular plurals must be learned individually: en man–män, en mus–möss, ett öga–ögon."
+        ],
+        "exercise": {
+          "prompt": "Which plural form fits the noun en bil?",
+          "options": ["bilar", "bilor", "biler", "bill"],
+          "answer": "bilar",
+          "explanation": "The noun en bil takes the common -ar pattern in the plural."
+        }
+      },
+      {
+        "title": "Possession and compounds",
+        "rule": "Use s for many possessors: Annas bil. Swedish also builds long compound nouns: en busshållplats.",
+        "why": "Possession and compounds make everyday nouns clear and compact. The structure helps you understand longer words without reading them word by word.",
+        "commonMistakes": [
+          "Using the wrong word order in a possessive phrase.",
+          "Breaking a compound into several small words when Swedish normally writes it as one word."
+        ],
+        "examples": [
+          {"sv": "min systers cykel", "en": "my sister's bicycle"},
+          {"sv": "ett körkort", "en": "a driving licence"}
+        ],
+        "exceptions": [
+          "Personal names ending in s often take only an apostrophe in writing: Lars' bil. Compound meaning can change with word order, so check the full word."
+        ],
+        "exercise": {
+          "prompt": "Which phrase is the correct possessive form of Anna + bil?",
+          "options": ["Annas bil", "Anna bil", "Anna s bil", "bil Anna"],
+          "answer": "Annas bil",
+          "explanation": "Swedish commonly marks possession by adding s to the possessor."
+        }
+      }
+    ]
+  },
+  {
+    "group": "Verbs and tense",
+    "intro": "Verb forms, auxiliary verbs, and the patterns used in everyday Swedish.",
+    "lessons": [
+      {
+        "title": "Present tense",
+        "rule": "A Swedish verb normally has one present form for all persons: jag arbetar, du arbetar, de arbetar.",
+        "why": "The present tense is the base form used in everyday conversation. It tells the listener that the action is happening now or in a general habit.",
+        "commonMistakes": [
+          "Adding a person ending to the verb when Swedish often does not.",
+          "Forgetting that the verb itself is the key pattern, not a special helper form."
+        ],
+        "examples": [
+          {"sv": "Jag bor i Malmö.", "en": "I live in Malmö."},
+          {"sv": "Hon bor i Malmö.", "en": "She lives in Malmö."}
+        ],
+        "exceptions": [
+          "The verb vara is irregular: jag är, du är, de är. A few common verbs are irregular but still do not change by person."
+        ],
+        "exercise": {
+          "prompt": "Which form is correct in the present tense for du + arbeta?",
+          "options": ["du arbetar", "du arbetar", "du arbetade", "du arbetat"],
+          "answer": "du arbetar",
+          "explanation": "The present form is the same across most persons in Swedish."
+        }
+      },
+      {
+        "title": "Past tense",
+        "rule": "Regular verbs commonly use -ade, -de or -te: prata–pratade, stänga–stängde, köpa–köpte.",
+        "why": "The past form marks an action that happened before now. It is one of the most important patterns in narration and short stories.",
+        "commonMistakes": [
+          "Mixing up the verb group and choosing the wrong ending.",
+          "Forgetting that common verbs often have irregular past forms."
+        ],
+        "examples": [
+          {"sv": "Jag jobbade i går.", "en": "I worked yesterday."},
+          {"sv": "Hon köpte mjölk.", "en": "She bought milk."}
+        ],
+        "exceptions": [
+          "High-frequency verbs are irregular: vara–var, gå–gick, komma–kom, se–såg, göra–gjorde, få–fick, ha–hade."
+        ],
+        "exercise": {
+          "prompt": "Which past-tense form fits köpa?",
+          "options": ["köpte", "kopa", "köper", "köpt"],
+          "answer": "köpte",
+          "explanation": "köpa belongs to the -te verb pattern in the past tense."
+        }
+      },
+      {
+        "title": "Perfect and pluperfect",
+        "rule": "Use har + supine for a completed action connected to now: Jag har läst. Use hade + supine for an earlier past action: Jag hade läst.",
+        "why": "These forms show whether a completed action is still relevant or happened before another point in time.",
+        "commonMistakes": [
+          "Using the past tense when the sentence is connected to the present.",
+          "Forgetting that hade introduces an earlier past action."
+        ],
+        "examples": [
+          {"sv": "Vi har ätit.", "en": "We have eaten."},
+          {"sv": "När jag kom hade de gått.", "en": "When I arrived, they had left."}
+        ],
+        "exceptions": [
+          "Movement and change-of-state verbs can use vara in some formal or older varieties, but modern everyday Swedish normally uses har: Hon har kommit."
+        ],
+        "exercise": {
+          "prompt": "Which form makes the sentence sound connected to now: Jag ___ läst boken?",
+          "options": ["har", "hade", "är", "var"],
+          "answer": "har",
+          "explanation": "har + supine is used when the action is complete and relevant to the present moment."
+        }
+      },
+      {
+        "title": "Future meaning",
+        "rule": "Use ska + infinitive for intention or arranged action, kommer att for a prediction, and present tense for a scheduled future event.",
+        "why": "Swedish expresses future meaning through context and verb pattern, so the form helps the listener understand whether something is planned, predicted, or scheduled.",
+        "commonMistakes": [
+          "Using the same pattern for every future meaning.",
+          "Forgetting that present tense can also signal a scheduled future event."
+        ],
+        "examples": [
+          {"sv": "Jag ska ringa senare.", "en": "I am going to call later."},
+          {"sv": "Tåget går klockan åtta.", "en": "The train leaves at eight."}
+        ],
+        "exceptions": [
+          "Ska can express obligation or a promise, not only future: Du ska göra läxan. Present tense can sound like a firm plan when a time is clear."
+        ],
+        "exercise": {
+          "prompt": "Which form best fits a planned action: Jag ___ äta middag senare?",
+          "options": ["ska", "kommer att", "äter", "hade"],
+          "answer": "ska",
+          "explanation": "ska + infinitive is a standard way to express a plan or intention."
+        }
+      },
+      {
+        "title": "Modal verbs",
+        "rule": "After kan, vill, måste, får, bör and ska, use the infinitive without att: Jag kan simma. You must not insert att.",
+        "why": "Modal verbs help you express ability, permission, advice, desire, or obligation. The verb that follows them stays in its base form.",
+        "commonMistakes": [
+          "Adding att after a modal verb.",
+          "Forgetting that the modal verb changes the tone of the sentence."
+        ],
+        "examples": [
+          {"sv": "Du måste gå nu.", "en": "You must go now."},
+          {"sv": "Får jag komma in?", "en": "May I come in?"}
+        ],
+        "exceptions": [
+          "Vill gärna and skulle vilja are polite expressions; the verb still stays in the infinitive without att: Jag skulle vilja beställa."
+        ],
+        "exercise": {
+          "prompt": "Which form is correct: Jag ___ simma?",
+          "options": ["kan", "att kan", "känner", "kans"],
+          "answer": "kan",
+          "explanation": "Modal verbs take the infinitive directly without att."
+        }
+      }
+    ]
+  },
+  {
+    "group": "Sentence structure",
+    "intro": "Word order, questions, negation, and clause patterns.",
+    "lessons": [
+      {
+        "title": "V2 main-clause order",
+        "rule": "In a main clause, the finite verb is normally in position two: subject + verb, or another element + verb + subject.",
+        "why": "The verb position makes a main clause sound natural and clear. The second position is one of the strongest patterns in Swedish.",
+        "commonMistakes": [
+          "Keeping the subject in first position in every sentence.",
+          "Forgetting that time and place can move to the front of the clause."
+        ],
+        "examples": [
+          {"sv": "Jag kommer i morgon.", "en": "I am coming tomorrow."},
+          {"sv": "I morgon kommer jag.", "en": "Tomorrow I am coming."}
+        ],
+        "exceptions": [
+          "Position two means the second sentence element, not always the second word. A long time phrase can still count as one element."
+        ],
+        "exercise": {
+          "prompt": "Which sentence has the correct V2 word order?",
+          "options": ["I morgon kommer jag.", "Jag morgon kommer.", "Kommer jag i morgon.", "I morgon jag kommer."],
+          "answer": "I morgon kommer jag.",
+          "explanation": "The verb moves into second position, and the subject follows it."
+        }
+      },
+      {
+        "title": "Negation with inte",
+        "rule": "In a main clause, inte usually follows the finite verb: Jag dricker inte kaffe. In a subordinate clause, inte usually comes before the finite verb: eftersom jag inte dricker kaffe.",
+        "why": "The placement of inte shows which part of the sentence is being negated. That makes the sentence clearer and more natural.",
+        "commonMistakes": [
+          "Placing inte too early in a main clause.",
+          "Forgetting that subordinate clauses have a different pattern."
+        ],
+        "examples": [
+          {"sv": "Jag har inte sett filmen.", "en": "I have not seen the film."},
+          {"sv": "Hon säger att hon inte kan komma.", "en": "She says that she cannot come."}
+        ],
+        "exceptions": [
+          "With a short answer, inte can stand alone: Nej, inte idag. In speech, emphasis can move other adverbs, but the neutral pattern is safest."
+        ],
+        "exercise": {
+          "prompt": "Which version is correct in a main clause?",
+          "options": ["Jag dricker inte kaffe.", "Jag inte dricker kaffe.", "Jag dricker kaffe inte.", "Inte jag dricker kaffe."],
+          "answer": "Jag dricker inte kaffe.",
+          "explanation": "In a main clause, inte usually comes after the finite verb."
+        }
+      },
+      {
+        "title": "Yes/no and question-word questions",
+        "rule": "Put the finite verb before the subject in yes/no questions: Talar du svenska? Question words come first: Var bor du?",
+        "why": "Questions are built by moving the verb to the front. This makes the question sound natural without adding a helper word.",
+        "commonMistakes": [
+          "Keeping statement word order in a yes/no question.",
+          "Forgetting that the question word comes first in wh-questions."
+        ],
+        "examples": [
+          {"sv": "Har du tid?", "en": "Do you have time?"},
+          {"sv": "När börjar filmen?", "en": "When does the film start?"}
+        ],
+        "exceptions": [
+          "A statement word order can be used as a confirmation question in conversation: Du kommer i morgon? Intonation carries the question."
+        ],
+        "exercise": {
+          "prompt": "Which question is correct?",
+          "options": ["Var bor du?", "Du bor var?", "Bor du var?", "Var du bor?"],
+          "answer": "Var bor du?",
+          "explanation": "The question word goes first and the verb follows it."
+        }
+      },
+      {
+        "title": "Subordinate clauses",
+        "rule": "Common subordinators include att, eftersom, när, om, fastän and medan. In a subordinate clause, sentence adverbs such as inte usually come before the finite verb.",
+        "why": "Subordinate clauses show that one idea depends on another. The word order signals the relationship between the two clauses.",
+        "commonMistakes": [
+          "Keeping main-clause word order inside a subordinate clause.",
+          "Forgetting that subordinators often introduce a dependent clause."
+        ],
+        "examples": [
+          {"sv": "Jag stannar eftersom jag är trött.", "en": "I am staying because I am tired."},
+          {"sv": "Om det regnar tar vi bussen.", "en": "If it rains, we will take the bus."}
+        ],
+        "exceptions": [
+          "Att can mean both to in an infinitive and that as a conjunction. Context decides: att läsa versus Jag vet att du läser."
+        ],
+        "exercise": {
+          "prompt": "Which sentence has the correct subordinate clause order?",
+          "options": ["Jag stannar eftersom jag är trött.", "Jag eftersom stannar jag är trött.", "Eftersom jag stannar är jag trött.", "Jag stannar jag eftersom är trött."],
+          "answer": "Jag stannar eftersom jag är trött.",
+          "explanation": "In a subordinate clause, the verb position changes and the conjunction marks the dependent idea."
+        }
+      },
+      {
+        "title": "Object placement",
+        "rule": "The basic order is subject–verb–object: Jag läser boken. Pronoun objects are short and usually follow the verb: Hon hjälper mig.",
+        "why": "Proper object placement makes the sentence flow clearly and helps the listener follow who does what.",
+        "commonMistakes": [
+          "Putting the object before the verb when the pattern is subject–verb–object.",
+          "Forgetting that pronoun objects are often placed closely after the verb."
+        ],
+        "examples": [
+          {"sv": "Jag har inte läst boken.", "en": "I have not read the book."},
+          {"sv": "Han gav henne en present.", "en": "He gave her a present."}
+        ],
+        "exceptions": [
+          "Some verbs take a preposition instead of a direct object: Jag väntar på bussen means I am waiting for the bus."
+        ],
+        "exercise": {
+          "prompt": "Which sentence keeps the object in the normal Swedish pattern?",
+          "options": ["Hon hjälper mig.", "Hon mig hjälper.", "Mig hon hjälper.", "Hjälper hon mig."],
+          "answer": "Hon hjälper mig.",
+          "explanation": "Short pronoun objects normally stay close to the verb."
+        }
+      }
+    ]
+  },
+  {
+    "group": "Adjectives and pronouns",
+    "intro": "Agreement, comparison, personal forms, and possession.",
+    "lessons": [
+      {
+        "title": "Adjective agreement",
+        "rule": "The adjective usually takes -t with an ett noun and -a in the plural: en stor bil, ett stort hus, stora hus.",
+        "why": "Adjective endings complete the noun phrase and show how the noun is being described. They help the phrase sound finished and natural.",
+        "commonMistakes": [
+          "Leaving the adjective without the ending in a plural or ett-noun phrase.",
+          "Using the same adjective form in every noun phrase."
+        ],
+        "examples": [
+          {"sv": "en röd stol", "en": "a red chair"},
+          {"sv": "ett rött äpple", "en": "a red apple"}
+        ],
+        "exceptions": [
+          "Some adjectives already end in a vowel or have irregular forms. Definite phrases normally use -a: den stora bilen, even with a masculine person."
+        ],
+        "exercise": {
+          "prompt": "Which adjective form fits ett hus?",
+          "options": ["ett stort hus", "ett stor hus", "ett stora hus", "ett stork hus"],
+          "answer": "ett stort hus",
+          "explanation": "ett nouns often take -t on the adjective."
+        }
+      },
+      {
+        "title": "Personal pronouns",
+        "rule": "Subject forms are jag, du, han, hon, den, det, vi, ni, de. Object forms are mig, dig, honom, henne, den, det, oss, er, dem.",
+        "why": "Pronouns keep the sentence short and clear. Subject and object forms help you follow who is acting and who is affected by the action.",
+        "commonMistakes": [
+          "Using the subject form in an object position.",
+          "Forgetting that den/det can be used as pronouns in different genders."
+        ],
+        "examples": [
+          {"sv": "Hon hjälper mig.", "en": "She helps me."},
+          {"sv": "Vi såg dem igår.", "en": "We saw them yesterday."}
+        ],
+        "exceptions": [
+          "De is commonly pronounced dom in speech. Formal writing keeps de for subjects and dem for objects, while informal writing may use dom for both."
+        ],
+        "exercise": {
+          "prompt": "Which object form fits the sentence: Hon såg __?",
+          "options": ["mig", "jag", "vi", "de"],
+          "answer": "mig",
+          "explanation": "The sentence needs the object form after the verb."
+        }
+      },
+      {
+        "title": "Possessive agreement",
+        "rule": "min/mitt/mina and din/ditt/dina agree with the possessed noun: min bok, mitt hus, mina böcker.",
+        "why": "Possessive forms match the noun being owned, which makes the phrase sound complete and easy to follow.",
+        "commonMistakes": [
+          "Using one possessive form for all nouns.",
+          "Forgetting that reflexive possessives can refer back to the subject."
+        ],
+        "examples": [
+          {"sv": "mitt namn", "en": "my name"},
+          {"sv": "våra barn", "en": "our children"}
+        ],
+        "exceptions": [
+          "Hans, hennes, dess, vår, er and deras do not change for en, ett, or plural. Reflexive sin/sitt/sina refers back to the subject: Hon tar sin bok."
+        ],
+        "exercise": {
+          "prompt": "Which form fits the noun mina böcker?",
+          "options": ["mina", "min", "mitt", "mine"],
+          "answer": "mina",
+          "explanation": "The plural possessive agrees with the plural noun."
+        }
+      },
+      {
+        "title": "Comparative and superlative",
+        "rule": "Many short adjectives use -are and -ast: snabb, snabbare, snabbast. Use än after a comparative and den/det/de before a definite superlative.",
+        "why": "Comparative and superlative forms help you express comparison clearly. They are common in reviews, prices, and practical descriptions.",
+        "commonMistakes": [
+          "Leaving out än after a comparative.",
+          "Using the wrong form when the superlative is definite."
+        ],
+        "examples": [
+          {"sv": "Den här vägen är kortare än den andra.", "en": "This road is shorter than the other one."},
+          {"sv": "Det är den bästa dagen.", "en": "It is the best day."}
+        ],
+        "exceptions": [
+          "Irregular forms include bra–bättre–bäst, dålig–sämre–sämst, liten–mindre–minst and gammal–äldre–äldst."
+        ],
+        "exercise": {
+          "prompt": "Which form completes the sentence: Den här vägen är ___ än den andra?",
+          "options": ["kortare", "kortast", "kort", "korta"],
+          "answer": "kortare",
+          "explanation": "The comparative is formed with the comparative ending and often followed by än."
+        }
+      }
+    ]
+  },
+  {
+    "group": "Prepositions and everyday usage",
+    "intro": "Small words that rarely translate one-to-one from Swedish to everyday speech.",
+    "lessons": [
+      {
+        "title": "i, på, and till",
+        "rule": "Use i for inside, countries, cities, and many time periods; på for surfaces, activities, and many institutions; till for movement toward a place.",
+        "why": "These prepositions help place actions and objects in time and space. They are extremely common in everyday Swedish.",
+        "commonMistakes": [
+          "Choosing the preposition by translating word for word.",
+          "Forgetting that country, city, and institution choices can differ."
+        ],
+        "examples": [
+          {"sv": "i Sverige / på jobbet / till skolan", "en": "in Sweden / at work / to school"},
+          {"sv": "Jag bor i Stockholm.", "en": "I live in Stockholm."}
+        ],
+        "exceptions": [
+          "Set phrases must be learned: på morgonen, i kväll, till höger, på vänster sida. Jobb, skola, sjukhus and university vary with whether the activity or the building is meant."
+        ],
+        "exercise": {
+          "prompt": "Which preposition fits the phrase: ___ skolan?",
+          "options": ["till", "i", "på", "från"],
+          "answer": "till",
+          "explanation": "till is used for direction toward a place."
+        }
+      },
+      {
+        "title": "Time expressions",
+        "rule": "Use i for duration into the future or time needed: Jag kommer om fem minuter. Use sedan for ago/then depending on context and för ... sedan for ago.",
+        "why": "Time expressions make the timeline clear. They tell the listener if something is in the future, in the past, or already underway.",
+        "commonMistakes": [
+          "Mixing up i, om, and sedan.",
+          "Using the same pattern for a duration and a past time reference."
+        ],
+        "examples": [
+          {"sv": "Jag flyttade hit för två år sedan.", "en": "I moved here two years ago."},
+          {"sv": "Vi ses om en timme.", "en": "See you in an hour."}
+        ],
+        "exceptions": [
+          "Sedan can also mean since/then: sedan i måndags and först ... sedan. Use på en timme for the time taken to complete something."
+        ],
+        "exercise": {
+          "prompt": "Which phrase fits: 'See you in an hour'?",
+          "options": ["Vi ses om en timme.", "Vi ses i en timme.", "Vi ses sedan en timme.", "Vi ses till en timme."],
+          "answer": "Vi ses om en timme.",
+          "explanation": "om is used for a future time span."
+        }
+      },
+      {
+        "title": "Verb-preposition combinations",
+        "rule": "Many verbs require a fixed preposition: vänta på, tänka på, lyssna på, prata med, fråga efter, längta efter.",
+        "why": "These combinations are fixed and often cannot be changed without changing the meaning. Learning them makes sentences sound native and reduces confusion.",
+        "commonMistakes": [
+          "Changing the preposition because it looks similar to English.",
+          "Learning the verb without the preposition it normally takes."
+        ],
+        "examples": [
+          {"sv": "Jag väntar på bussen.", "en": "I am waiting for the bus."},
+          {"sv": "Hon pratar med sin chef.", "en": "She is talking to her manager."}
+        ],
+        "exceptions": [
+          "Some verbs allow more than one preposition with a meaning change: tänka på means think about, while tänka över means consider carefully."
+        ],
+        "exercise": {
+          "prompt": "Which preposition fits the verb vänta?",
+          "options": ["på", "med", "från", "i"],
+          "answer": "på",
+          "explanation": "vänta på is the standard verb-preposition combination."
+        }
+      },
+      {
+        "title": "Directions and movement",
+        "rule": "Use till for a destination, från for a starting point, genom for through, över for across/over, and mot for toward.",
+        "why": "Movement words make route and direction clear. They help you describe where you are going or where something is located.",
+        "commonMistakes": [
+          "Using one movement preposition for every direction.",
+          "Forgetting that the choice depends on the route or destination."
+        ],
+        "examples": [
+          {"sv": "Vi åker till Göteborg från Malmö.", "en": "We are travelling to Gothenburg from Malmö."},
+          {"sv": "Gå över gatan.", "en": "Cross the street."}
+        ],
+        "exceptions": [
+          "At a person’s home, use hos: Jag är hos Anna. For visiting a place as an activity, på may be natural: på bio, på restaurang."
+        ],
+        "exercise": {
+          "prompt": "Which preposition fits the sentence: Vi går ___ gatan?",
+          "options": ["över", "till", "från", "i"],
+          "answer": "över",
+          "explanation": "över marks crossing across a surface or location."
+        }
+      }
+    ]
+  },
+  {
+    "group": "Special patterns and exceptions",
+    "intro": "Forms that do not fit the simplest beginner rules.",
+    "lessons": [
+      {
+        "title": "Imperatives",
+        "rule": "The imperative often uses the verb stem: Kom! Läs! For many -a verbs, the infinitive and imperative look alike: prata!",
+        "why": "Commands are short and direct. They are important in instructions, routines, and practical situations.",
+        "commonMistakes": [
+          "Adding a subject pronoun to a neutral command.",
+          "Using the infinitive instead of the imperative when speaking directly."
+        ],
+        "examples": [
+          {"sv": "Öppna fönstret!", "en": "Open the window!"},
+          {"sv": "Var försiktig!", "en": "Be careful!"}
+        ],
+        "exceptions": [
+          "Irregular imperatives include var (be), gör (do/make), gå (go), kom (come), se (see) and ta (take). Add kan du or skulle du kunna for a softer request."
+        ],
+        "exercise": {
+          "prompt": "Which form is the correct imperative of kom?",
+          "options": ["Kom!", "Komma!", "Kommer!", "Komme!"],
+          "answer": "Kom!",
+          "explanation": "The imperative often uses the bare verb stem in direct commands."
+        }
+      },
+      {
+        "title": "Reflexive verbs",
+        "rule": "Use mig, dig, sig, oss, or er when the object refers back to the subject: Jag tvättar mig. Hon sätter sig.",
+        "why": "Reflexive forms show that the action affects the subject itself. They are common in routines, feelings, and daily actions.",
+        "commonMistakes": [
+          "Leaving out the reflexive pronoun in a sentence that needs it.",
+          "Assuming the object is always a different person."
+        ],
+        "examples": [
+          {"sv": "Jag känner mig trött.", "en": "I feel tired."},
+          {"sv": "De gifte sig i juni.", "en": "They got married in June."}
+        ],
+        "exceptions": [
+          "Some verbs change meaning with or without reflexive forms: lägga means put something down, while lägga sig means lie down. Learn these as separate patterns."
+        ],
+        "exercise": {
+          "prompt": "Which reflexive form fits the sentence: Jag tvättar __?",
+          "options": ["mig", "jag", "du", "oss"],
+          "answer": "mig",
+          "explanation": "Reflexive pronouns refer back to the subject of the clause."
+        }
+      },
+      {
+        "title": "Passive voice",
+        "rule": "The -s passive is common: Dörren öppnas klockan åtta. Use bli + past participle for an event or change: Dörren blev öppnad.",
+        "why": "Passive voice shifts attention from the doer to the action or result. It is useful in instructions, notices, and reports.",
+        "commonMistakes": [
+          "Treating every -s form as a passive.",
+          "Forgetting that the passive can sound neutral or formal."
+        ],
+        "examples": [
+          {"sv": "Svenska talas i Sverige.", "en": "Swedish is spoken in Sweden."},
+          {"sv": "Maten serveras snart.", "en": "The food will be served soon."}
+        ],
+        "exceptions": [
+          "The -s ending can also be reciprocal or part of a lexical verb: Vi ses means see you, and hoppas means hope. Do not translate every -s as passive."
+        ],
+        "exercise": {
+          "prompt": "Which sentence is a passive form?",
+          "options": ["Dörren öppnas klockan åtta.", "Dörren öppnar klockan åtta.", "Dörren öppnade klockan åtta.", "Dörren öppna klockan åtta."],
+          "answer": "Dörren öppnas klockan åtta.",
+          "explanation": "The -s ending creates a passive or neutral form in many everyday sentences."
+        }
+      },
+      {
+        "title": "There is and there are",
+        "rule": "Use det finns for existence: Det finns en bok på bordet. Swedish keeps finns unchanged for singular and plural.",
+        "why": "Existence sentences are common in daily life. They tell the listener that something is available or present.",
+        "commonMistakes": [
+          "Changing finns according to number.",
+          "Using det är when the sentence is about existence rather than description."
+        ],
+        "examples": [
+          {"sv": "Det finns ett problem.", "en": "There is a problem."},
+          {"sv": "Det finns många lösningar.", "en": "There are many solutions."}
+        ],
+        "exceptions": [
+          "Det är can identify or describe something, while det finns means that something exists or is available: Det är en bok versus Det finns en bok på bordet."
+        ],
+        "exercise": {
+          "prompt": "Which sentence correctly uses det finns?",
+          "options": ["Det finns många lösningar.", "Det finns många lösning.", "Det är många lösningar.", "Det finns är många lösningar."],
+          "answer": "Det finns många lösningar.",
+          "explanation": "det finns does not change for number when expressing existence."
+        }
+      },
+      {
+        "title": "Formal and spoken Swedish",
+        "rule": "Written Swedish uses de and dem, while everyday speech normally pronounces both as dom. Spoken language may also shorten words and use informal particles.",
+        "why": "Register matters in Swedish. The same idea can sound more natural in speech or more formal in writing.",
+        "commonMistakes": [
+          "Using casual spoken forms in formal writing.",
+          "Forgetting that everyday speech often changes pronunciation and word choice."
+        ],
+        "examples": [
+          {"sv": "De kommer snart. / Jag såg dem.", "en": "They are coming soon. / I saw them."},
+          {"sv": "Det är ju bra.", "en": "That is good, you know."}
+        ],
+        "exceptions": [
+          "Use standard written forms in applications, school work, and professional writing. In casual writing, dom is common but may be considered informal."
+        ],
+        "exercise": {
+          "prompt": "Which form is standard in writing?",
+          "options": ["de", "dom", "dey", "demm"],
+          "answer": "de",
+          "explanation": "Standard written Swedish uses de for the subject form and dem for the object form."
+        }
+      }
+    ]
+  }
+]

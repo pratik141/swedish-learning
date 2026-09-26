@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Everyday Swedish Vocabulary · Swedish → English → Hindi</title>
-  <meta name="description" content="Interactive Swedish-English-Hindi vocabulary browser for daily life in Sweden, with category dropdowns, levels, pronunciation, examples, and grammar notes.">
+  <title>Språkverkstan · Swedish learning studio</title>
+  <meta name="description" content="A focused Swedish learning studio for vocabulary, grammar, pronunciation, sentence building, and practice tests.">
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230b3b4a'/%3E%3Cpath d='M12 19h40v8H12zM12 37h40v8H12z' fill='%23f6c453'/%3E%3Cpath d='M25 9h8v46h-8z' fill='%23f6c453'/%3E%3C/svg%3E">
   <link rel="stylesheet" href="styles.css">
 </head>
@@ -12,15 +12,63 @@
   <header class="topbar">
     <div class="brandmark" aria-hidden="true">SV</div>
     <div>
-      <p class="eyebrow">Swedish → English → Hindi</p>
-      <h1>Everyday Swedish Vocabulary</h1>
-      <p class="lede">Browse practical Swedish for daily life in Sweden with category dropdowns, A1–B1 levels, Hindi meanings, pronunciation guides, and simple examples.</p>
+      <p class="eyebrow">Swedish learning studio · Svenska → English → हिन्दी</p>
+      <h1>Build Swedish you can use.</h1>
+      <p class="lede">A calm, practical workspace for vocabulary, grammar, pronunciation, sentence forming, and quick tests.</p>
     </div>
-    <button class="theme-toggle" id="themeToggle" type="button" aria-pressed="false">Dark theme</button>
+    <div class="header-actions">
+      <button class="profile-toggle" id="profileToggle" type="button" aria-expanded="false">Profile</button>
+      <button class="theme-toggle" id="themeToggle" type="button" aria-pressed="false">Dark theme</button>
+    </div>
   </header>
 
+  <aside class="profile-panel" id="profilePanel" hidden>
+    <div class="profile-panel-header">
+      <div>
+        <p class="eyebrow">Your study profile</p>
+        <h2 id="profileTitle">Sign in</h2>
+      </div>
+      <button type="button" class="close-panel" id="closeProfile" aria-label="Close profile panel">Close</button>
+    </div>
+
+    <div id="profileLoggedIn" class="profile-user" hidden>
+      <p class="profile-label">Signed in as</p>
+      <strong id="profileUserName">Learner</strong>
+      <small id="profileUserEmail">learner@example.com</small>
+      <button type="button" class="secondary-button" id="logoutButton">Sign out</button>
+    </div>
+
+    <form id="profileForm" class="profile-form">
+      <label id="profileNameField">
+        Full name
+        <input id="profileNameInput" type="text" placeholder="Your name" autocomplete="name" required>
+      </label>
+      <label>
+        Email
+        <input id="profileEmailInput" type="email" placeholder="you@example.com" autocomplete="email" required>
+      </label>
+      <label>
+        Password
+        <input id="profilePasswordInput" type="password" placeholder="Create a password" autocomplete="new-password" required>
+      </label>
+      <button type="submit" class="primary-button">Save profile</button>
+      <button type="button" id="profileModeToggle" class="text-button">Already have an account? Sign in</button>
+      <p id="profileStatus" class="profile-status" aria-live="polite"></p>
+    </form>
+  </aside>
+
   <main>
-    <section class="study-panel" aria-labelledby="study-title">
+    <nav class="study-tabs" aria-label="Study modes" role="tablist">
+      <button class="study-tab active" id="tab-vocabulary" data-tab="vocabulary" role="tab" aria-selected="true">Vocabulary</button>
+      <button class="study-tab" id="tab-grammar" data-tab="grammar" role="tab" aria-selected="false">Grammar</button>
+      <button class="study-tab" id="tab-pronunciation" data-tab="pronunciation" role="tab" aria-selected="false">Pronunciation</button>
+      <button class="study-tab" id="tab-sentences" data-tab="sentences" role="tab" aria-selected="false">Sentence lab</button>
+      <button class="study-tab" id="tab-practice" data-tab="practice" role="tab" aria-selected="false">Practice test</button>
+      <button class="study-tab" id="tab-review" data-tab="review" role="tab" aria-selected="false">Review</button>
+      <button class="study-tab" id="tab-situations" data-tab="situations" role="tab" aria-selected="false">Situations</button>
+    </nav>
+
+    <section class="study-panel tab-panel" id="panel-vocabulary" data-panel="vocabulary" role="tabpanel" aria-labelledby="tab-vocabulary">
       <div class="panel-head">
         <div>
           <h2 id="study-title">Vocabulary browser</h2>
@@ -81,6 +129,7 @@
       <div id="loadingState" class="empty" hidden>Loading this vocabulary component…</div>
       <div id="emptyState" class="empty" hidden>No matching vocabulary found. Try a broader category or clear the search.</div>
       <section id="cards" class="card-grid" aria-label="Vocabulary cards"></section>
+      <button id="loadMoreWords" class="secondary-button" type="button" hidden>Load more words</button>
       <section id="tableWrap" class="table-wrap" aria-label="Vocabulary table" hidden>
         <table>
           <thead>
@@ -91,15 +140,47 @@
       </section>
     </section>
 
-    <section class="grammar" aria-labelledby="grammar-title">
+    <section class="grammar tab-panel" id="panel-grammar" data-panel="grammar" aria-labelledby="tab-grammar" role="tabpanel" hidden>
       <div>
-        <p class="eyebrow">Beginner guide</p>
-        <h2 id="grammar-title">Important Swedish grammar notes</h2>
+        <p class="eyebrow">Simple grammar guide</p>
+        <h2 id="grammar-title">Swedish grammar, step by step</h2>
+        <p class="grammar-intro">Start with the short rule. Open a lesson for examples, reasons, and exceptions.</p>
       </div>
       <div id="grammarNotes" class="note-grid"></div>
     </section>
+
+    <section class="learning-panel tab-panel" id="panel-pronunciation" data-panel="pronunciation" aria-labelledby="tab-pronunciation" role="tabpanel" hidden>
+      <div class="panel-head compact-head"><div><p class="eyebrow">Sound practice</p><h2>Train your Swedish ear</h2><p>Listen, read the guide, then repeat the word out loud.</p></div><label class="speed-control">Speed<select id="speechRate"><option value="0.65">Slow</option><option value="0.82" selected>Normal</option><option value="1">Fast</option></select></label></div>
+      <p id="speechStatus" class="speech-status" role="status"></p>
+      <div class="sound-guide-strip"><strong>Sound guide:</strong><span><b>å</b> rounded ah</span><span><b>ä</b> open eh</span><span><b>ö</b> rounded uh</span><span><b>sj</b> soft sh</span><span><b>tj</b> light sh</span></div>
+      <div id="pronunciationList" class="pronunciation-grid"></div>
+    </section>
+
+    <section class="learning-panel tab-panel" id="panel-sentences" data-panel="sentences" aria-labelledby="tab-sentences" role="tabpanel" hidden>
+      <div class="panel-head compact-head"><div><p class="eyebrow">Sentence lab</p><h2>See words in motion</h2><p>Study a useful example and notice the word order.</p></div><button class="primary-button" id="newSentence" type="button">New sentence</button></div>
+      <div id="sentenceCard" class="sentence-card"></div>
+    </section>
+
+    <section class="learning-panel tab-panel" id="panel-practice" data-panel="practice" aria-labelledby="tab-practice" role="tabpanel" hidden>
+      <div class="panel-head compact-head"><div><p class="eyebrow">Quick check</p><h2>Practice test</h2><p>Choose a mode, answer, and get a short explanation.</p></div><div class="score" aria-live="polite"><strong id="scoreValue">0 / 0</strong><span>score</span></div></div>
+      <label class="test-mode">Question type<select id="testMode"><option value="meaning">Swedish → meaning</option><option value="reverse">Meaning → Swedish</option><option value="spelling">Type the Swedish word</option><option value="listening">Listen → meaning</option><option value="grammar">Grammar gap</option></select></label>
+      <div id="quizCard" class="quiz-card"></div>
+      <button class="primary-button" id="nextQuestion" type="button">Start test</button>
+    </section>
+
+    <section class="learning-panel tab-panel" id="panel-review" data-panel="review" aria-labelledby="tab-review" role="tabpanel" hidden>
+      <div class="panel-head compact-head"><div><p class="eyebrow">Personal review</p><h2>Words to practise</h2><p>Save important words or revisit words you missed in a test.</p></div><button class="primary-button" id="resetProgress" type="button">Reset progress</button></div>
+      <div id="progressSummary" class="progress-summary"></div>
+      <div id="reviewEmpty" class="empty" hidden>Your review list is empty. Favourite a word or answer a test question incorrectly to see it here.</div>
+      <section id="reviewCards" class="card-grid" aria-label="Review vocabulary"></section>
+    </section>
+
+    <section class="learning-panel tab-panel" id="panel-situations" data-panel="situations" aria-labelledby="tab-situations" role="tabpanel" hidden>
+      <div class="panel-head compact-head"><div><p class="eyebrow">Real-life Swedish</p><h2>Practice useful situations</h2><p>Read a short dialogue, listen to each line, and complete the quick check.</p></div><label class="test-mode">Situation<select id="situationSelect"></select></label></div>
+      <div id="situationContent" class="situation-layout"></div>
+    </section>
   </main>
 
-  <script src="app.js"></script>
+  <script type="module" src="app.js"></script>
 </body>
 </html>
