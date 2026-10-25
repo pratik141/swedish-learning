@@ -1,0 +1,9 @@
+# Data flow
+
+- `server.py` creates the Flask app through `sprakverkstan.create_app`; it registers `/api` routes and serves the static app from `docs/`.
+- `scripts/migrate_database.py` applies ordered migrations. Migrations import checked-in vocabulary, grammar, and situation data into SQLAlchemy tables.
+- Browser vocabulary requests go to `/api/vocabulary` with a category, set, IDs, or all selector and pagination/filter parameters. `/api/manifest`, `/api/grammar`, and `/api/situations` provide learning content.
+- Registration/login establish a signed Flask session. `/api/me` reads it; `/api/progress` reads or replaces the user's JSON progress. The browser merges local and server progress when refreshing a profile.
+- External vocabulary search uses Wikidata's SPARQL endpoint and stores returned lexemes separately from seeded vocabulary.
+
+Inspect `sprakverkstan/__init__.py`, `sprakverkstan/routes/`, and `docs/modules/` for current request and response details.

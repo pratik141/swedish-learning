@@ -54,3 +54,13 @@ node scripts/suggest-new-words.mjs
 ```
 
 GitHub Actions runs the same validation on pull requests, pushes, and a weekly schedule. The weekly job creates a `vocabulary_suggestions.md` artifact with candidate words to review before adding them.
+
+## AI coding context
+
+Start with `AGENTS.md`, then open only the relevant note under `docs/context/`. Check context freshness with:
+
+```bash
+python scripts/update_context.py --check
+```
+
+After source changes, run `python scripts/update_context.py --update` to refresh the deterministic code map and manifest. If it reports stale curated notes, update those notes from source and acknowledge each reviewed section, for example `python scripts/update_context.py --acknowledge BUSINESS_LOGIC DATA_FLOW`. Use `PROJECT_CONTEXT`, `BUSINESS_LOGIC`, and `DATA_FLOW` as section names. `--check` is read-only; acknowledgements update coverage only after review. The updater does not invoke an LLM.
