@@ -1,11 +1,15 @@
+import io
+import json
 import tempfile
 import unittest
 from pathlib import Path
+from unittest.mock import patch
 
 from sprakverkstan import create_app
 from sprakverkstan.extensions import db
 from sprakverkstan.migrations import upgrade_all
 from sprakverkstan.models import ExternalVocabularyWord, LearningContent, VocabularyWord
+from sprakverkstan.vocabulary_lookup import WikidataLookupError, search_wikidata_lexemes
 
 
 class VocabularyApiTests(unittest.TestCase):
@@ -125,6 +129,65 @@ class VocabularyApiTests(unittest.TestCase):
         self.assertEqual(external.json["items"][0]["source"]["license"], "CC0-1.0")
         self.assertEqual(external.json["items"][0]["sv"], "provord")
         self.assertNotIn("example", external.json["items"][0])
+
+    def test_missing_search_word_is_fetched_from_wikidata_and_saved(self):
+        lexemes = [{
+            "lexeme_uri": "https://www.wikidata.org/entity/L123456",
+            "lemma": "sällsynt",
+            "gloss": "rare",
+        }]
+        with patch("sprakverkstan.routes.api.search_wikidata_lexemes", return_value=lexemes) as lookup:
+            response = self.client.get("/api/vocabulary?category=01-fruits&q=rare")
+
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.json["count"], 1)
+        item = response.json["items"][0]
+        self.assertEqual(item["sv"], "sällsynt")
+        self.assertEqual(item["source"]["license"], "CC0-1.0")
+        lookup.assert_called_once_with("rare")
+
+        with self.app.app_context():
+            saved = db.session.get(ExternalVocabularyWord, item["id"])
+            self.assertIsNotNone(saved)
+            self.assertEqual(saved.data["source"]["uri"], lexemes[0]["lexeme_uri"])
+            self.assertIn(" rare ", saved.search_text)
+
+        with patch("sprakverkstan.routes.api.search_wikidata_lexemes") as lookup:
+            repeated = self.client.get("/api/vocabulary?category=01-fruits&q=rare")
+        self.assertEqual(repeated.status_code, 200)
+        self.assertEqual(repeated.json["items"][0]["id"], item["id"])
+        lookup.assert_not_called()
+
+    def test_missing_search_word_reports_wikidata_failure(self):
+        with patch(
+            "sprakverkstan.routes.api.search_wikidata_lexemes",
+            side_effect=WikidataLookupError("Wikidata is unavailable"),
+        ):
+            response = self.client.get("/api/vocabulary?category=01-fruits&q=rare")
+
+        self.assertEqual(response.status_code, 503)
+        self.assertIn("Online vocabulary lookup", response.json["error"])
+
+    def test_wikidata_lookup_parses_lexeme_results_without_live_network(self):
+        payload = {
+            "results": {
+                "bindings": [{
+                    "lexeme": {"value": "https://www.wikidata.org/entity/L123456"},
+                    "lemma": {"value": "sällsynt"},
+                    "gloss": {"value": "rare"},
+                }],
+            },
+        }
+        response = io.BytesIO(json.dumps(payload).encode("utf-8"))
+        with patch("sprakverkstan.vocabulary_lookup.urllib.request.urlopen", return_value=response) as urlopen:
+            results = search_wikidata_lexemes("rare")
+
+        self.assertEqual(results, [{
+            "lexeme_uri": "https://www.wikidata.org/entity/L123456",
+            "lemma": "sällsynt",
+            "gloss": "rare",
+        }])
+        self.assertEqual(urlopen.call_args.kwargs["timeout"], 10)
 
 
 if __name__ == "__main__":

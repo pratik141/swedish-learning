@@ -25,9 +25,15 @@ SQLite is the default and stores its database in `instance/sprakverkstan.db`. Se
 
 ## Deploy to Cloud Run
 
+The GitHub Actions workflow in `.github/workflows/deploy-cloud-run.yml` runs the Python tests and deploys every push to `main`; it can also be started manually from the Actions tab. It builds and publishes the Docker image to `us-central1-docker.pkg.dev/pratik151/cloud-run-source-deploy/sprakverkstan` and deploys the public `sprakverkstan` service in `us-central1`. The container runs database migrations on startup; with the current ephemeral SQLite configuration, every Cloud Run instance initializes its own database and its data may be lost when that instance is replaced.
+
+Configure Workload Identity Federation to trust this repository and grant the service account permission to build and publish images, deploy Cloud Run services, and act as the Cloud Run runtime service account. Enable the Cloud Build, Artifact Registry, and Cloud Run APIs, and create the Artifact Registry repository `cloud-run-source-deploy` in `us-central1`. The Cloud Run runtime service account needs Secret Manager access to the `SECRET_KEY` secret, which the workflow binds as an environment variable; the workflow enables secure cookies.
+
+For a one-time manual deployment, use:
+
 ```bash
-gcloud builds submit --tag REGION-docker.pkg.dev/PROJECT_ID/REPOSITORY/sprakverkstan
-gcloud run deploy sprakverkstan --image REGION-docker.pkg.dev/PROJECT_ID/REPOSITORY/sprakverkstan --region REGION --allow-unauthenticated --set-env-vars COOKIE_SECURE=true --set-secrets SECRET_KEY=SECRET_NAME:latest,DATABASE_URL=DATABASE_URL_SECRET:latest
+gcloud builds submit --project pratik151 --tag us-central1-docker.pkg.dev/pratik151/cloud-run-source-deploy/sprakverkstan .
+gcloud run deploy sprakverkstan --project pratik151 --image us-central1-docker.pkg.dev/pratik151/cloud-run-source-deploy/sprakverkstan --region us-central1 --allow-unauthenticated --set-env-vars COOKIE_SECURE=true,DATABASE_URL=sqlite:////app/instance/sprakverkstan.db --set-secrets SECRET_KEY=SECRET_KEY:latest
 ```
 
 Cloud Run supplies the `PORT` environment variable; the included Gunicorn command binds to it automatically.
@@ -36,7 +42,7 @@ Cloud Run supplies the `PORT` environment variable; the included Gunicorn comman
 
 Vocabulary records are imported into the database by the versioned migrations. The browser calls `GET /api/vocabulary?category=<slug>` and receives only that category; quick reference, search, filters, and review IDs are also resolved by the API. Responses are paged in batches of 50 and append only when requested. Only pronunciation explicitly walks all pages; grammar and situation documents are fetched from database APIs when their tabs are opened.
 
-To add more words from the internet, run `scripts.import_wikidata_vocabulary`. It fetches Swedish lemmas and English sense glosses from Wikidata's SPARQL endpoint, which publishes structured data under CC0, skips existing lemmas, and stores the source Lexeme URL and license with each record. Review imported entries before treating their translations as classroom-quality; Wikidata does not guarantee completeness or pedagogy.
+When a vocabulary search has no local match, the API searches Wikidata Lexemes for Swedish lemmas and English glosses, then saves new matches in the database under the attributed `open-vocabulary` category. The source publishes structured data under CC0; each saved entry includes its Lexeme URL and license. These entries are also available to later searches and under the open-vocabulary category. Review entries before treating translations as classroom-quality; Wikidata does not guarantee completeness or pedagogy. To import a larger batch ahead of time, run `scripts.import_wikidata_vocabulary`.
 
 The latest grammar expansion was cross-checked against [Swedish grammar](https://en.wikipedia.org/wiki/Swedish_grammar) and [SwedishGrammar.com](https://www.swedishgrammar.com/). Lesson wording and examples were written for this app; each new lesson links its reference, and Wikipedia-derived references are identified as CC BY-SA 4.0.
 

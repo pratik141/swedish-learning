@@ -5,7 +5,7 @@
     "docs/context/BUSINESS_LOGIC.md": "5d166e34c54c223f5e30f6f7c90528aea767e8e88a250c5a5c57ccadc7381f85",
     "docs/context/CODEBASE_MAP.md": "b0246e13acaf940d695409e983fa18798987d223ae7b0445c4ca66af5fc44873",
     "docs/context/DATA_FLOW.md": "d1fc4c8dfb6d2569ddf0a76997347787bfac3914c6430df5001404bb57bdf63c",
-    "docs/context/PROJECT_CONTEXT.md": "88ffd158ca84b8bdbd258c2d03328754bc58a0b3d46331814a1d592cfae52061"
+    "docs/context/PROJECT_CONTEXT.md": "5b9d66a851cf40a418dd6e61ca6e268c68dd04291244a06b90bc2feca86271b1"
   },
   "pending_files": {},
   "schema_version": 3,
@@ -13,13 +13,14 @@
     "BUSINESS_LOGIC": "333ae63eca5f7c04a6f63e80b860b26c6fd9c2fdf861190b37e2c0282e85a3af",
     "CODEBASE_MAP": "8052d843aa80cd02bb1c1c7981a5175f24d1c1434c094c7c986f2b37294c6585",
     "DATA_FLOW": "37fb2331ce18ae404476a5a6674dec0e8e0298768c14b2411ab837cee29a1f1d",
-    "PROJECT_CONTEXT": "d4aa23c301d7c57738c0e170f9d073d1f76d18466883d057452d9e171c6660ff"
+    "PROJECT_CONTEXT": "48c40c5379c8f6320618d1f4a2227dc36a15ced28d8e59719c0e293cadcac2ce"
   },
   "source_hashes": {
+    ".github/workflows/deploy-cloud-run.yml": "25c38fd019a5cd194e03f09a47f5781da0e687be730d4684cb050cadf38a74ee",
     ".github/workflows/vocabulary-ci.yml": "7ad5dfd412f377933a702dd09ae04001024781c94aeb3e4d8502cd0478fbfeec",
     ".gitignore": "949f68c165783252d10c2756496132ce5a1b6589ca567aa7c754c972ac564ccd",
-    "Dockerfile": "a07eb4f845cd880e42ddbac77b7360c3bbfb9779324ea229d4a3da315d7c41a6",
-    "README.md": "e7177713a3dfc929017feea95066e45ff65ccb8eff84b58525013f69c35dada7",
+    "Dockerfile": "7bb45fc4b05f0c86acadb540f989484617a0a299f9992e9ceffee65cb0b1bb79",
+    "README.md": "f94fba35ec625ca118a261edc523c5e494618b69bb12029d6e575bf7eadcf53d",
     "docs/ROADMAP.md": "8aaa34bf1d6b3c5eed194ae7565e21e9414c2a221c9196fac8cbb4cede9f54d0",
     "docs/app.js": "83cf6ce9a19fee28802117bc57f7c123699ffb157b5275cf04f1b3972ef21d9b",
     "docs/data/chunks/01-fruits.json": "c0c7f3e446887b101890d9f70ad330914ab2a85115d8aa7eedcb60b4f7bfc8f5",
@@ -82,7 +83,7 @@
     "tests/test_auth_api.py": "b2e3967fb174317b96dc5f05648bffbd3c3a308316bf859296ad281276482071",
     "tests/test_vocabulary_api.py": "b1dbf276155195ebd8031e054919ee12e7a99b95fc125ea3786588da83b87839"
   },
-  "source_revision": "d473a1550d91686b9a551f4de9ccf682aa4b880b",
+  "source_revision": "ad24adcfffb439836418b5ff21168611fd74b9bd",
   "stale_sections": [],
   "symbols": {
     "sprakverkstan/__init__.py": {
@@ -143,6 +144,6 @@
       ]
     }
   },
-  "updated_at": "2026-10-25T10:15:47+00:00",
-  "version": "1.0.1"
+  "updated_at": "2026-10-25T11:24:31+00:00",
+  "version": "1.1.0"
 }

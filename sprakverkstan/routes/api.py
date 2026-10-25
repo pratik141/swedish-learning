@@ -1,3 +1,4 @@
+import hashlib
 import re
 import unicodedata
 
@@ -6,6 +7,7 @@ from sqlalchemy import func, select
 
 from ..extensions import db
 from ..models import ExternalVocabularyWord, LearningContent, User, VocabularyWord
+from ..vocabulary_lookup import WikidataLookupError, search_wikidata_lexemes
 
 
 api_bp = Blueprint("api", __name__)
@@ -19,6 +21,62 @@ def _normalize_search(value):
 def _current_user():
     user_id = session.get("user_id")
     return db.session.get(User, user_id) if user_id else None
+
+
+def _store_wikidata_lexemes(search):
+    lexemes = search_wikidata_lexemes(search)
+    if not lexemes:
+        return []
+
+    existing_words = db.session.execute(select(VocabularyWord.data["sv"])).scalars().all()
+    existing_words.extend(db.session.execute(select(ExternalVocabularyWord.data["sv"])).scalars().all())
+    seen_lemmas = {word.casefold() for word in existing_words if word}
+    next_id = max(
+        db.session.scalar(select(func.max(VocabularyWord.id))) or 0,
+        db.session.scalar(select(func.max(ExternalVocabularyWord.id))) or 1_000_000,
+    ) + 1
+
+    additions = []
+    for lexeme in lexemes:
+        lemma = lexeme["lemma"]
+        gloss = lexeme["gloss"]
+        lexeme_uri = lexeme["lexeme_uri"]
+        if lemma.casefold() in seen_lemmas:
+            continue
+
+        source_key = f"{lexeme_uri}|{gloss.casefold()}"
+        item = {
+            "id": next_id,
+            "kind": "word",
+            "sv": lemma,
+            "plural": "",
+            "en": gloss,
+            "hi": "",
+            "pron": "",
+            "category": "🌐 Open vocabulary",
+            "categoryLabel": "🌐 Open vocabulary",
+            "categorySlug": "open-vocabulary",
+            "level": "B1",
+            "forms": "",
+            "source": {
+                "name": "Wikidata Lexemes",
+                "uri": lexeme_uri,
+                "license": "CC0-1.0",
+            },
+        }
+        additions.append(ExternalVocabularyWord(
+            id=next_id,
+            source_key=hashlib.sha256(source_key.encode("utf-8")).hexdigest()[:16],
+            source_uri=lexeme_uri,
+            data=item,
+            search_text=f" {_normalize_search(' '.join((lemma, gloss)))} ",
+        ))
+        seen_lemmas.add(lemma.casefold())
+        next_id += 1
+
+    db.session.add_all(additions)
+    db.session.commit()
+    return [item.data for item in additions]
 
 
 @api_bp.get("/manifest")
@@ -122,6 +180,35 @@ def vocabulary():
     external_count = 0
     if include_external:
         external_count = db.session.scalar(select(func.count()).select_from(ExternalVocabularyWord).where(*external_filters))
+
+    fallback_external = False
+    if search and requested_ids is None and base_count == 0:
+        if not include_external:
+            external_count = db.session.scalar(
+                select(func.count()).select_from(ExternalVocabularyWord).where(*external_filters)
+            )
+        if external_count:
+            include_external = True
+            fallback_external = True
+        elif (not level or level == "B1") and (not kind or kind == "word"):
+            try:
+                items = _store_wikidata_lexemes(search[:100])
+            except WikidataLookupError:
+                current_app.logger.exception("Wikidata vocabulary lookup failed")
+                return jsonify({"error": "Online vocabulary lookup is temporarily unavailable."}), 503
+            items = [
+                item for item in items
+                if (not level or item["level"] == level) and (not kind or item["kind"] == kind)
+            ]
+            if items:
+                page_items = items[offset:offset + limit]
+                return jsonify({
+                    "items": page_items,
+                    "count": len(items),
+                    "offset": offset,
+                    "hasMore": offset + len(page_items) < len(items),
+                })
+
     total = base_count + external_count
 
     if requested_ids is not None:
@@ -134,7 +221,9 @@ def vocabulary():
 
     base_query = select(VocabularyWord.data).where(*base_filters).order_by(VocabularyWord.id)
     external_query = select(ExternalVocabularyWord.data).where(*external_filters).order_by(ExternalVocabularyWord.id)
-    if include_external and (include_all or (category is None and requested_ids is None)):
+    if fallback_external:
+        items = db.session.execute(external_query.offset(offset).limit(limit)).scalars().all()
+    elif include_external and (include_all or (category is None and requested_ids is None)):
         if offset < base_count:
             base_items = db.session.execute(base_query.offset(offset).limit(limit)).scalars().all()
             remaining = limit - len(base_items)
