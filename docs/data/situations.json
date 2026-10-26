@@ -142,5 +142,80 @@
     "prompt": "What is the correct emergency phrase?",
     "answer": "Det är en nödsituation.",
     "options": ["Det är en nödsituation.", "Jag går till butiken.", "Här är bara kaffe.", "Jag förstår inte."]
+  },
+  {
+    "id": "restaurant",
+    "title": "At a restaurant",
+    "goal": "Order a meal, ask about ingredients, and request the bill.",
+    "vocab": ["Har ni ett bord för två?", "Vad rekommenderar du?", "Notan, tack."],
+    "dialogue": [
+      {"sv": "Har ni ett bord för två?", "en": "Do you have a table for two?", "hi": "क्या आपके पास दो लोगों के लिए मेज़ है?"},
+      {"sv": "Vad rekommenderar du på menyn?", "en": "What do you recommend on the menu?", "hi": "आप मेन्यू में क्या सुझाते हैं?"},
+      {"sv": "Finns det något vegetariskt?", "en": "Is there anything vegetarian?", "hi": "क्या कुछ शाकाहारी है?"},
+      {"sv": "Allt var jättegott. Notan, tack.", "en": "Everything was delicious. The bill, please.", "hi": "सब कुछ बहुत स्वादिष्ट था। बिल दीजिए, कृपया।"}
+    ],
+    "prompt": "Which phrase politely asks for the bill?",
+    "answer": "Notan, tack.",
+    "options": ["Notan, tack.", "Var ligger stationen?", "Jag har ont i halsen.", "Jag kommer från Sverige."]
+  },
+  {
+    "id": "pharmacy",
+    "title": "At a pharmacy",
+    "goal": "Ask a pharmacist for an over-the-counter product and understand basic instructions.",
+    "vocab": ["Jag har huvudvärk.", "Vad rekommenderar du?", "Hur ofta ska jag ta den?"],
+    "dialogue": [
+      {"sv": "Hej, jag har huvudvärk. Kan du hjälpa mig?", "en": "Hello, I have a headache. Can you help me?", "hi": "नमस्ते, मेरे सिर में दर्द है। क्या आप मेरी मदद कर सकते हैं?"},
+      {"sv": "Jag skulle vilja köpa något receptfritt.", "en": "I would like to buy something over the counter.", "hi": "मैं बिना पर्चे की कोई दवा खरीदना चाहता हूँ।"},
+      {"sv": "Hur ofta ska jag ta den?", "en": "How often should I take it?", "hi": "मुझे इसे कितनी बार लेना चाहिए?"},
+      {"sv": "Tack, jag läser instruktionerna noga.", "en": "Thanks, I will read the instructions carefully.", "hi": "धन्यवाद, मैं निर्देश ध्यान से पढ़ूँगा।"}
+    ],
+    "prompt": "Which phrase asks how often to take a medicine?",
+    "answer": "Hur ofta ska jag ta den?",
+    "options": ["Hur ofta ska jag ta den?", "Hur mycket kostar den?", "När går bussen?", "Kan jag få menyn?"]
+  },
+  {
+    "id": "hotel",
+    "title": "Checking in at a hotel",
+    "goal": "Check in, confirm a reservation, and ask about hotel facilities.",
+    "vocab": ["Jag har en bokning.", "Kan jag få nyckeln?", "När serveras frukosten?"],
+    "dialogue": [
+      {"sv": "Hej, jag har en bokning i namnet Andersson.", "en": "Hello, I have a reservation under the name Andersson.", "hi": "नमस्ते, मेरे पास Andersson नाम से बुकिंग है।"},
+      {"sv": "Kan jag få se din legitimation?", "en": "May I see your ID?", "hi": "क्या मैं आपका पहचान-पत्र देख सकता हूँ?"},
+      {"sv": "Vilken tid serveras frukosten?", "en": "What time is breakfast served?", "hi": "नाश्ता किस समय परोसा जाता है?"},
+      {"sv": "Tack. När måste jag checka ut?", "en": "Thanks. When do I need to check out?", "hi": "धन्यवाद। मुझे किस समय तक चेक-आउट करना होगा?"}
+    ],
+    "prompt": "Which sentence tells the receptionist you booked a room?",
+    "answer": "Jag har en bokning.",
+    "options": ["Jag har en bokning.", "Jag har tappat bort min biljett.", "Jag vill beställa kaffe.", "Jag söker ett apotek."]
+  },
+  {
+    "id": "library",
+    "title": "At the library",
+    "goal": "Find a book, ask about borrowing it, and get a library card.",
+    "vocab": ["Var hittar jag böcker om historia?", "Kan jag låna den här?", "Jag vill skaffa ett bibliotekskort."],
+    "dialogue": [
+      {"sv": "Hej, var hittar jag böcker om historia?", "en": "Hello, where can I find books about history?", "hi": "नमस्ते, इतिहास की किताबें कहाँ मिलेंगी?"},
+      {"sv": "De står på hyllan längst bort.", "en": "They are on the shelf at the far end.", "hi": "वे सबसे दूर वाली शेल्फ़ पर हैं।"},
+      {"sv": "Kan jag låna den här boken?", "en": "Can I borrow this book?", "hi": "क्या मैं यह किताब उधार ले सकता हूँ?"},
+      {"sv": "Ja, men du behöver ett bibliotekskort.", "en": "Yes, but you need a library card.", "hi": "हाँ, लेकिन आपको पुस्तकालय कार्ड चाहिए।"}
+    ],
+    "prompt": "Which question asks if you may borrow a book?",
+    "answer": "Kan jag låna den här boken?",
+    "options": ["Kan jag låna den här boken?", "Kan jag betala med kort?", "När går nästa tåg?", "Var ligger hotellet?"]
+  },
+  {
+    "id": "hairdresser",
+    "title": "At the hairdresser",
+    "goal": "Book an appointment and explain how you want your hair cut.",
+    "vocab": ["Har ni en ledig tid i veckan?", "Jag vill klippa topparna.", "Kan jag boka en tid?"],
+    "dialogue": [
+      {"sv": "Hej, har ni en ledig tid i veckan?", "en": "Hello, do you have an available appointment this week?", "hi": "नमस्ते, क्या इस हफ़्ते कोई समय खाली है?"},
+      {"sv": "Ja, vi har en tid på torsdag eftermiddag.", "en": "Yes, we have an appointment on Thursday afternoon.", "hi": "हाँ, गुरुवार दोपहर को समय उपलब्ध है।"},
+      {"sv": "Det passar bra. Jag vill klippa topparna.", "en": "That works well. I would like to trim the ends.", "hi": "यह ठीक है। मैं बालों के सिरे कटवाना चाहता हूँ।"},
+      {"sv": "Ska vi boka klockan två?", "en": "Shall we book it for two o'clock?", "hi": "क्या हम दो बजे का समय तय करें?"}
+    ],
+    "prompt": "Which phrase asks whether an appointment is available?",
+    "answer": "Har ni en ledig tid i veckan?",
+    "options": ["Har ni en ledig tid i veckan?", "Har ni ett bord för två?", "Hur ofta går bussen?", "Kan jag låna den här boken?"]
   }
 ]

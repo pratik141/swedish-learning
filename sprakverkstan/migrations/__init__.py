@@ -7,6 +7,7 @@ from .v0006_grammar_expansion import upgrade as upgrade_grammar_expansion
 from .v0007_online_grammar import upgrade as upgrade_online_grammar
 from .v0008_supine_example import upgrade as upgrade_supine_example
 from .v0009_repair_supine_example import upgrade as upgrade_repair_supine_example
+from .v0010_situations_expansion import upgrade as upgrade_situations_expansion
 
 
 def upgrade_all(app):
@@ -20,6 +21,7 @@ def upgrade_all(app):
 		upgrade_online_grammar(app),
 		upgrade_supine_example(app),
 		upgrade_repair_supine_example(app),
+		upgrade_situations_expansion(app),
 	]
 
 
@@ -33,5 +35,6 @@ __all__ = [
 	"upgrade_grammar_expansion",
 	"upgrade_online_grammar",
 	"upgrade_supine_example",
+	"upgrade_situations_expansion",
 	"upgrade_repair_supine_example",
 ]

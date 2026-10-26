@@ -2,17 +2,17 @@
   "complete": true,
   "context_hashes": {
     "AGENTS.md": "88f203fa9f676d9944a496528d83993b068ab78ec89a194968b6bb27228801ec",
-    "docs/context/BUSINESS_LOGIC.md": "5d166e34c54c223f5e30f6f7c90528aea767e8e88a250c5a5c57ccadc7381f85",
+    "docs/context/BUSINESS_LOGIC.md": "697fc14075318ce4f284d1765f9eb580a2343fd9a5230542b4633557b2f81660",
     "docs/context/CODEBASE_MAP.md": "b0246e13acaf940d695409e983fa18798987d223ae7b0445c4ca66af5fc44873",
-    "docs/context/DATA_FLOW.md": "d1fc4c8dfb6d2569ddf0a76997347787bfac3914c6430df5001404bb57bdf63c",
+    "docs/context/DATA_FLOW.md": "c6bdebddd3acd97458864ecfcc5c9d515be63d2487da0c8fe46ccbe028f1d6f0",
     "docs/context/PROJECT_CONTEXT.md": "5b9d66a851cf40a418dd6e61ca6e268c68dd04291244a06b90bc2feca86271b1"
   },
   "pending_files": {},
   "schema_version": 3,
   "section_hashes": {
-    "BUSINESS_LOGIC": "333ae63eca5f7c04a6f63e80b860b26c6fd9c2fdf861190b37e2c0282e85a3af",
-    "CODEBASE_MAP": "8052d843aa80cd02bb1c1c7981a5175f24d1c1434c094c7c986f2b37294c6585",
-    "DATA_FLOW": "37fb2331ce18ae404476a5a6674dec0e8e0298768c14b2411ab837cee29a1f1d",
+    "BUSINESS_LOGIC": "755efd8d6f2e20d176e7052106e2ca740a7e95e625c4bf7594765b460ead29a3",
+    "CODEBASE_MAP": "485a76be073d6e32ea6e3fbdedbc835820136d01fb6d67c76f63a9bf35320450",
+    "DATA_FLOW": "5ddc8b61f8c58f4e0ae1173947e2b63a310655430dea418cb743830e4c4a2983",
     "PROJECT_CONTEXT": "48c40c5379c8f6320618d1f4a2227dc36a15ced28d8e59719c0e293cadcac2ce"
   },
   "source_hashes": {
@@ -51,7 +51,7 @@
     "docs/data/chunks/public-services-documents.json": "b2792178e5e5ecebd86f6242b3beda04d8a8d66a501b634b013ccbac320d01df",
     "docs/data/grammar.json": "14aa8feac2b7a48dba3ff13a94119360878e51e4d54d073e5ffe02b71bc9c63a",
     "docs/data/manifest.json": "e79b1e2508e17ae38a91e370d194f0f153eaf036d37dd3a8c43bf09b50cfddbc",
-    "docs/data/situations.json": "593b517e1542ecb0e116c02c3d21f63119e6a2a4309ae52c301a06c637ef3435",
+    "docs/data/situations.json": "f5e66ef4532827acfc70589261bc843e1cb79f2d3a324e0af095298805fb5a2d",
     "docs/index.html": "c489b9c46956575baf1aabd098ffd1a030b5eb9ec41625bb4465a56c040a597f",
     "docs/modules/account.js": "c3497b3b3b28edc3e06027b176ccc9234a8aa3cc5693fe611dfde5f4fa47474a",
     "docs/modules/situations.js": "a92ab8bb1259af8eb56c6989bc6e5aea25677500084fda9b9ea661e8b5b93334",
@@ -66,7 +66,7 @@
     "sprakverkstan/__init__.py": "7975ca32cde9fb13d7f5e06b1457cd1872cf8c4bac95ada552c27f7e0e8dbd84",
     "sprakverkstan/config.py": "e3f02f7595bcf669d472c325ebf740593ac5bae6fed41dbf7cdd5e35ea1ccd7a",
     "sprakverkstan/extensions.py": "d72ede1a548f83d47c8e1c54b6ca9f4cdb89fa9025a4d4c4734f71e63412827e",
-    "sprakverkstan/migrations/__init__.py": "0b7a8abaa66082e077d5c7fba95bd1687ad6b9d28485d3052bd0ccf01cf2c2d0",
+    "sprakverkstan/migrations/__init__.py": "a48f204392ec30e50f473c0322918908eb8804083af3f28e297bd5858000442a",
     "sprakverkstan/migrations/v0001_vocabulary.py": "f464f27746ed17a21affca89768cae52f102e1946949332c47031b796ca5c9bc",
     "sprakverkstan/migrations/v0002_learning_content.py": "5fc7e694b9d892e4f6463583c0430813a45e4974dcec5d99884bde7dba87b90a",
     "sprakverkstan/migrations/v0003_beginner_grammar.py": "db4e513605ca4b3105efc73e8b0626d911336e6cb94d7b60b199cdf4a46212d3",
@@ -76,14 +76,15 @@
     "sprakverkstan/migrations/v0007_online_grammar.py": "a0abf6d5eefac9ba4f6f6f61ab12fe2a526181f665f71681aeb97413f5fdfa13",
     "sprakverkstan/migrations/v0008_supine_example.py": "f3fff76250efc75ed377fb09aa686e72e803cf6082655bee247cd4800a9ea8f9",
     "sprakverkstan/migrations/v0009_repair_supine_example.py": "328b51fe398614928f3499dc137627f5604ca90fa7d9b92431f657205aeafc0f",
+    "sprakverkstan/migrations/v0010_situations_expansion.py": "21fdd738ee3845cc16954b839aa1bcaa176fd11f468457ef9faf74fc7d618838",
     "sprakverkstan/models.py": "eabe2c046758579543e1c5f079c09b24fbc2244faee86e432e47af633d00c774",
     "sprakverkstan/routes/api.py": "17b58e71e941fd139176a2ec7e495bb6071ddbac01bd3eb8625686a1f34eb2ff",
     "sprakverkstan/routes/auth.py": "bee689cdf874a44851bc8514a4e1c93a718419e9ed1370342c32da99285f8edf",
     "sprakverkstan/vocabulary_lookup.py": "c7b52846884cb8156cafb01d184ef77320dcc566daaf9a9655feacdc4cef61dd",
     "tests/test_auth_api.py": "b2e3967fb174317b96dc5f05648bffbd3c3a308316bf859296ad281276482071",
-    "tests/test_vocabulary_api.py": "b1dbf276155195ebd8031e054919ee12e7a99b95fc125ea3786588da83b87839"
+    "tests/test_vocabulary_api.py": "9c9158f310c3d6d71cec3b4d2e606e1f8e157fae044b7b3f854cd61f7b8fa5a7"
   },
-  "source_revision": "ad24adcfffb439836418b5ff21168611fd74b9bd",
+  "source_revision": "d7330f5b80320191fd961738f56102673c7dbf26",
   "stale_sections": [],
   "symbols": {
     "sprakverkstan/__init__.py": {
@@ -144,6 +145,6 @@
       ]
     }
   },
-  "updated_at": "2026-10-25T11:24:31+00:00",
-  "version": "1.1.0"
+  "updated_at": "2026-10-26T21:03:57+00:00",
+  "version": "1.2.0"
 }

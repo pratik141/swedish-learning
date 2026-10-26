@@ -8,7 +8,16 @@ from unittest.mock import patch
 from sprakverkstan import create_app
 from sprakverkstan.extensions import db
 from sprakverkstan.migrations import upgrade_all
-from sprakverkstan.models import ExternalVocabularyWord, LearningContent, VocabularyWord
+from sprakverkstan.migrations.v0010_situations_expansion import (
+    REVISION as SITUATIONS_EXPANSION_REVISION,
+    upgrade as upgrade_situations_expansion,
+)
+from sprakverkstan.models import (
+    ExternalVocabularyWord,
+    LearningContent,
+    SchemaMigration,
+    VocabularyWord,
+)
 from sprakverkstan.vocabulary_lookup import WikidataLookupError, search_wikidata_lexemes
 
 
@@ -42,6 +51,7 @@ class VocabularyApiTests(unittest.TestCase):
         self.assertEqual(self.migration_results[6]["imported"], 6)
         self.assertEqual(self.migration_results[7]["imported"], 1)
         self.assertEqual(self.migration_results[8]["imported"], 1)
+        self.assertEqual(self.migration_results[9]["imported"], 0)
         repeat_results = upgrade_all(self.app)
         self.assertTrue(all(result["already_applied"] for result in repeat_results))
         with self.app.app_context():
@@ -101,9 +111,32 @@ class VocabularyApiTests(unittest.TestCase):
 
         situations = self.client.get("/api/situations")
         self.assertEqual(situations.status_code, 200)
-        self.assertEqual(len(situations.json), 10)
+        self.assertEqual(len(situations.json), 15)
+        self.assertEqual(
+            {scenario["id"] for scenario in situations.json[-5:]},
+            {"restaurant", "pharmacy", "hotel", "library", "hairdresser"},
+        )
+        for scenario in situations.json:
+            self.assertIn(scenario["answer"], scenario["options"])
+            self.assertTrue(all(line["sv"] and line["en"] and line["hi"] for line in scenario["dialogue"]))
         self.assertEqual(self.client.get("/data/manifest.json").status_code, 404)
         self.assertEqual(self.client.get("/data/grammar.json").status_code, 404)
+
+    def test_situations_expansion_migration_adds_missing_scenarios_once(self):
+        with self.app.app_context():
+            content = db.session.get(LearningContent, "situations")
+            content.data = content.data[:10]
+            db.session.delete(db.session.get(SchemaMigration, SITUATIONS_EXPANSION_REVISION))
+            db.session.commit()
+
+        result = upgrade_situations_expansion(self.app)
+        self.assertEqual(result["imported"], 5)
+        self.assertFalse(result["already_applied"])
+        self.assertEqual(len(self.client.get("/api/situations").json), 15)
+
+        repeated = upgrade_situations_expansion(self.app)
+        self.assertEqual(repeated["imported"], 0)
+        self.assertTrue(repeated["already_applied"])
 
     def test_external_open_licensed_words_are_separate_and_attributed(self):
         item = {
