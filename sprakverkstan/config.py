@@ -7,14 +7,19 @@ ROOT = Path(__file__).resolve().parent.parent
 INSTANCE_DIRECTORY = ROOT / "instance"
 
 
+def _normalize_database_url(database_url):
+    if database_url.startswith("postgres://"):
+        return database_url.replace("postgres://", "postgresql+psycopg2://", 1)
+    if database_url.startswith("postgresql://"):
+        return database_url.replace("postgresql://", "postgresql+psycopg2://", 1)
+    return database_url
+
+
 class Config:
     SECRET_KEY = os.environ.get("SECRET_KEY")
-    database_url = os.environ.get(
-        "DATABASE_URL",
-        f"sqlite:///{INSTANCE_DIRECTORY / 'sprakverkstan.db'}",
+    database_url = _normalize_database_url(
+        os.environ.get("DATABASE_URL", f"sqlite:///{INSTANCE_DIRECTORY / 'sprakverkstan.db'}")
     )
-    if database_url.startswith("postgres://"):
-        database_url = database_url.replace("postgres://", "postgresql://", 1)
     SQLALCHEMY_DATABASE_URI = database_url
     SQLALCHEMY_TRACK_MODIFICATIONS = False
     SQLALCHEMY_ENGINE_OPTIONS = {"pool_pre_ping": True}

@@ -22,6 +22,10 @@ class ContextUpdaterTests(unittest.TestCase):
     def test_unrelated_test_file_does_not_stale_behavior_notes(self):
         self.assertEqual(sections_for_path("tests/test_auth_api.py"), {"CODEBASE_MAP"})
 
+    def test_deployment_ignore_files_stale_project_context(self):
+        self.assertEqual(sections_for_path(".dockerignore"), {"PROJECT_CONTEXT"})
+        self.assertEqual(sections_for_path(".gcloudignore"), {"PROJECT_CONTEXT"})
+
     def test_hash_and_symbol_extraction_are_deterministic(self):
         with tempfile.TemporaryDirectory() as directory:
             source = Path(directory) / "module.py"

@@ -12,6 +12,13 @@ from ..vocabulary_lookup import WikidataLookupError, search_wikidata_lexemes
 
 api_bp = Blueprint("api", __name__)
 
+FREE_WORD_IDS = tuple(range(610, 630))
+FREE_GRAMMAR_LESSONS = {
+    "En and ett gender",
+    "Present tense",
+    "V2 main-clause order",
+}
+
 
 def _normalize_search(value):
     decomposed = unicodedata.normalize("NFKD", value.casefold())
@@ -87,6 +94,23 @@ def manifest():
 
     payload = dict(content.data)
     payload.pop("notes", None)
+    if _current_user() is None:
+        free_chapter = next(
+            chapter for chapter in payload["chapters"]
+            if chapter["slug"] == "20-essential-everyday-expressions"
+        )
+        payload["chapters"] = [{
+            **free_chapter,
+            "title": "Free beginner phrases",
+            "label": "Free beginner phrases",
+            "count": len(FREE_WORD_IDS),
+        }]
+        payload["meta"] = {**payload["meta"], "total": len(FREE_WORD_IDS), "quickTotal": len(FREE_WORD_IDS)}
+        payload["quickIds"] = list(FREE_WORD_IDS)
+        response = jsonify(payload)
+        response.headers["Cache-Control"] = "private, no-store"
+        return response
+
     external_count = db.session.scalar(select(db.func.count()).select_from(ExternalVocabularyWord))
     if external_count:
         chapters = list(payload["chapters"])
@@ -99,7 +123,9 @@ def manifest():
         })
         payload["chapters"] = chapters
         payload["meta"] = {**payload["meta"], "total": payload["meta"]["total"] + external_count}
-    return jsonify(payload)
+    response = jsonify(payload)
+    response.headers["Cache-Control"] = "private, no-store"
+    return response
 
 
 @api_bp.get("/grammar")
@@ -107,19 +133,39 @@ def grammar():
     content = db.session.get(LearningContent, "grammar")
     if content is None:
         return jsonify({"error": "Grammar content has not been migrated."}), 503
-    return jsonify(content.data)
+    grammar_data = content.data
+    if _current_user() is None:
+        grammar_data = [
+            {
+                **group,
+                "lessons": [
+                    lesson for lesson in group["lessons"]
+                    if lesson["title"] in FREE_GRAMMAR_LESSONS
+                ],
+            }
+            for group in grammar_data
+            if any(lesson["title"] in FREE_GRAMMAR_LESSONS for lesson in group["lessons"])
+        ]
+    response = jsonify(grammar_data)
+    response.headers["Cache-Control"] = "private, no-store"
+    return response
 
 
 @api_bp.get("/situations")
 def situations():
+    if _current_user() is None:
+        return jsonify({"error": "Sign in to unlock Situations."}), 401
     content = db.session.get(LearningContent, "situations")
     if content is None:
         return jsonify({"error": "Situation content has not been migrated."}), 503
-    return jsonify(content.data)
+    response = jsonify(content.data)
+    response.headers["Cache-Control"] = "private, no-store"
+    return response
 
 
 @api_bp.get("/vocabulary")
 def vocabulary():
+    user = _current_user()
     category = request.args.get("category")
     requested_ids = request.args.get("ids")
     word_set = request.args.get("set")
@@ -165,6 +211,10 @@ def vocabulary():
     elif word_set is not None:
         return jsonify({"error": "Unknown vocabulary set."}), 400
 
+    if user is None:
+        base_filters.append(VocabularyWord.id.in_(FREE_WORD_IDS))
+        external_filters.append(ExternalVocabularyWord.id < 0)
+
     for model, filters in ((VocabularyWord, base_filters), (ExternalVocabularyWord, external_filters)):
         if level:
             filters.append(model.level == level) if hasattr(model, "level") else filters.append(model.data["level"].as_string() == level)
@@ -182,7 +232,7 @@ def vocabulary():
         external_count = db.session.scalar(select(func.count()).select_from(ExternalVocabularyWord).where(*external_filters))
 
     fallback_external = False
-    if search and requested_ids is None and base_count == 0:
+    if user is not None and search and requested_ids is None and base_count == 0:
         if not include_external:
             external_count = db.session.scalar(
                 select(func.count()).select_from(ExternalVocabularyWord).where(*external_filters)
@@ -243,7 +293,7 @@ def vocabulary():
         "offset": offset,
         "hasMore": offset + len(items) < total,
     })
-    response.headers["Cache-Control"] = "public, max-age=300"
+    response.headers["Cache-Control"] = "private, no-store"
     return response
 
 

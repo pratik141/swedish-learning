@@ -38,6 +38,7 @@ let activeHasMore = false;
 let activeSelector = {};
 let searchTimer;
 let vocabularyLoadId = 0;
+let appReady = false;
 
 const els = {
   category: document.getElementById("categorySelect"),
@@ -46,6 +47,12 @@ const els = {
   type: document.getElementById("typeSelect"),
   search: document.getElementById("searchInput"),
   chips: document.getElementById("chapterChips"),
+  controls: document.querySelector(".controls"),
+  membershipNotice: document.getElementById("membershipNotice"),
+  membershipNoticeTitle: document.getElementById("membershipNoticeTitle"),
+  membershipNoticeText: document.getElementById("membershipNoticeText"),
+  membershipPrompt: document.getElementById("membershipPrompt"),
+  pathFooterText: document.getElementById("pathFooterText"),
   cards: document.getElementById("cards"),
   tableWrap: document.getElementById("tableWrap"),
   tableBody: document.getElementById("tableBody"),
@@ -148,24 +155,16 @@ function escapeHTML(value) {
 
 async function setup() {
   applyTheme(state.theme);
-  accountController = createAccountController({ progress, render, renderReview });
-  const accountReady = accountController.initialize();
+  accountController = createAccountController({
+    progress,
+    render,
+    renderReview,
+    onSessionChange: handleSessionChange,
+  });
   manifest = await fetchJSON("/api/manifest");
-  state.category = manifest.chapters[0]?.slug || "all";
-
-  els.category.innerHTML = [
-    ...manifest.chapters.map((chapter) => (
-      `<option value="${escapeHTML(chapter.slug)}">${escapeHTML(chapter.label)} (${chapter.count})</option>`
-    )),
-    '<option value="all">All categories</option>',
-  ].join("");
-
-  els.chips.innerHTML = [
-    ...manifest.chapters.slice(0, 12).map((chapter) => (
-      `<button class="chip" type="button" data-category="${escapeHTML(chapter.slug)}">${escapeHTML(chapter.label.split(" ").slice(0, 3).join(" "))}</button>`
-    )),
-    '<button class="chip" type="button" data-category="all">All</button>',
-  ].join("");
+  await accountController.initialize();
+  manifest = await fetchJSON("/api/manifest");
+  configureVocabularyNavigation();
 
   situationsController = createSituationsController({
     select: els.situationSelect,
@@ -173,11 +172,71 @@ async function setup() {
     speak,
     escapeHTML,
   });
-  els.category.value = state.category;
   bindEvents();
+  appReady = true;
+  updateMembershipUI();
   setTab(state.tab);
   await loadAndRender();
-  await accountReady;
+}
+
+function configureVocabularyNavigation() {
+  const signedIn = accountController.isLoggedIn();
+  state.category = signedIn ? "all" : (manifest.chapters[0]?.slug || "all");
+  if (!signedIn) {
+    state.set = "all";
+    state.level = "all";
+    state.type = "all";
+  }
+  els.category.innerHTML = [
+    ...manifest.chapters.map((chapter) => (
+      `<option value="${escapeHTML(chapter.slug)}">${escapeHTML(chapter.label)} (${chapter.count})</option>`
+    )),
+    ...(signedIn ? ['<option value="all">All categories</option>'] : []),
+  ].join("");
+  els.chips.innerHTML = [
+    ...manifest.chapters.slice(0, 12).map((chapter) => (
+      `<button class="chip" type="button" data-category="${escapeHTML(chapter.slug)}">${escapeHTML(chapter.label.split(" ").slice(0, 3).join(" "))}</button>`
+    )),
+    ...(signedIn ? ['<button class="chip" type="button" data-category="all">All</button>'] : []),
+  ].join("");
+  els.category.value = state.category;
+  els.level.value = state.level;
+  els.set.value = state.set;
+  els.type.value = state.type;
+}
+
+async function handleSessionChange(signedIn) {
+  if (!appReady) return;
+  manifest = await fetchJSON("/api/manifest");
+  configureVocabularyNavigation();
+  grammarLoaded = false;
+  grammarGroups = [];
+  if (!signedIn && !["vocabulary", "grammar"].includes(state.tab)) {
+    setTab("vocabulary");
+  }
+  updateMembershipUI();
+  await loadAndRender();
+  if (state.tab === "grammar") await loadGrammar();
+}
+
+function updateMembershipUI() {
+  const signedIn = accountController.isLoggedIn();
+  const onGrammar = state.tab === "grammar";
+  document.body.classList.toggle("is-authenticated", signedIn);
+  els.controls.classList.toggle("guest-controls", !signedIn);
+  els.membershipNotice.hidden = signedIn;
+  els.membershipNoticeTitle.textContent = onGrammar ? "Free grammar preview" : "Free beginner access";
+  els.membershipNoticeText.textContent = onGrammar
+    ? "Try three beginner grammar lessons. Sign in or create a free account to unlock the complete guide and all study activities."
+    : "Explore 20 essential Swedish phrases. Sign in or create a free account to unlock the full vocabulary and all study activities.";
+  els.pathFooterText.textContent = signedIn
+    ? "Your full learning library is unlocked"
+    : "Start with 20 free beginner phrases";
+  els.tabs.forEach((tab) => {
+    const locked = !signedIn && !["vocabulary", "grammar"].includes(tab.dataset.tab);
+    tab.classList.toggle("locked", locked);
+    tab.setAttribute("aria-label", locked ? `${tab.textContent.trim()}, sign-in required` : tab.textContent.trim());
+  });
 }
 
 function renderGrammar() {
@@ -205,6 +264,17 @@ async function loadGrammar() {
 }
 
 function bindEvents() {
+  document.querySelectorAll("[data-dashboard-tab]").forEach((button) => {
+    button.addEventListener("click", () => {
+      setTab(button.dataset.dashboardTab);
+      document.querySelector(".study-tabs").scrollIntoView({ behavior: "smooth", block: "start" });
+    });
+  });
+
+  els.membershipPrompt.addEventListener("click", () => {
+    accountController.promptLogin("Sign in or create a free account to unlock all words, grammar, and study activities.");
+  });
+
   els.category.addEventListener("change", async (event) => {
     state.category = event.target.value;
     syncChips();
@@ -488,7 +558,12 @@ function applyTheme(theme) {
 }
 
 function setTab(tab) {
+  if (!accountController.isLoggedIn() && !["vocabulary", "grammar"].includes(tab)) {
+    accountController.promptLogin("Create a free account or sign in to use this study activity.");
+    return;
+  }
   state.tab = tab;
+  updateMembershipUI();
   els.tabs.forEach((button) => {
     const active = button.dataset.tab === tab;
     button.classList.toggle("active", active);
@@ -523,6 +598,11 @@ function render() {
   const rows = filtered();
   els.visible.textContent = rows.length.toLocaleString();
   els.empty.hidden = rows.length !== 0;
+  if (!rows.length) {
+    els.empty.textContent = !accountController.isLoggedIn() && state.query.trim()
+      ? "No match in the free 20 phrases. Sign in or create an account to search the full vocabulary."
+      : "No matching vocabulary found. Try a broader category or clear the search.";
+  }
   els.loadMoreWords.hidden = !activeHasMore || state.tab !== "vocabulary";
   if (state.view === "cards") renderCards(rows);
   if (state.view === "table") renderTable(rows);

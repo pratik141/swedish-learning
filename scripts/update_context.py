@@ -96,7 +96,7 @@ def sections_for_path(path: str) -> set[str]:
     sections = {"CODEBASE_MAP"} if Path(path).suffix.lower() in CODE_SUFFIXES else set()
 
     if path in {
-        "README.md", "requirements.txt", "Dockerfile", ".gitignore",
+        "README.md", "requirements.txt", "Dockerfile", ".gitignore", ".dockerignore", ".gcloudignore",
         "server.py", "sprakverkstan/config.py", "sprakverkstan/__init__.py",
         "sprakverkstan/extensions.py", "docs/ROADMAP.md",
     } or path.startswith(".github/"):

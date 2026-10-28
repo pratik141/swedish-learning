@@ -3,24 +3,26 @@
   "context_hashes": {
     "AGENTS.md": "88f203fa9f676d9944a496528d83993b068ab78ec89a194968b6bb27228801ec",
     "docs/context/BUSINESS_LOGIC.md": "697fc14075318ce4f284d1765f9eb580a2343fd9a5230542b4633557b2f81660",
-    "docs/context/CODEBASE_MAP.md": "b0246e13acaf940d695409e983fa18798987d223ae7b0445c4ca66af5fc44873",
-    "docs/context/DATA_FLOW.md": "c6bdebddd3acd97458864ecfcc5c9d515be63d2487da0c8fe46ccbe028f1d6f0",
-    "docs/context/PROJECT_CONTEXT.md": "5b9d66a851cf40a418dd6e61ca6e268c68dd04291244a06b90bc2feca86271b1"
+    "docs/context/CODEBASE_MAP.md": "acd88d38c0d8f5c55725d9b7c75178d08dd9ce81ff744c1f8a0587a3294fa9f1",
+    "docs/context/DATA_FLOW.md": "c76988820f1b2c6f00adad6578c8038083725fc42bcef08a72d0cb2d478f5681",
+    "docs/context/PROJECT_CONTEXT.md": "ebd6defc7f6c64f8fdac732f52b1699463b5904f22765eea279a73fba4f85729"
   },
   "pending_files": {},
   "schema_version": 3,
   "section_hashes": {
     "BUSINESS_LOGIC": "755efd8d6f2e20d176e7052106e2ca740a7e95e625c4bf7594765b460ead29a3",
-    "CODEBASE_MAP": "485a76be073d6e32ea6e3fbdedbc835820136d01fb6d67c76f63a9bf35320450",
-    "DATA_FLOW": "5ddc8b61f8c58f4e0ae1173947e2b63a310655430dea418cb743830e4c4a2983",
-    "PROJECT_CONTEXT": "48c40c5379c8f6320618d1f4a2227dc36a15ced28d8e59719c0e293cadcac2ce"
+    "CODEBASE_MAP": "87c98d0ef502eabb911f9cddfe321b84a5325ba124e68f0084f22a33de8408d4",
+    "DATA_FLOW": "2a81ec023e98487c1c32708fec8a9a166b525cfd6c4b76f4b0bc01be944420be",
+    "PROJECT_CONTEXT": "c40e298888214ac5974a537420e13051d1e13e2e826f9a857c228e5babfb3cb1"
   },
   "source_hashes": {
-    ".github/workflows/deploy-cloud-run.yml": "25c38fd019a5cd194e03f09a47f5781da0e687be730d4684cb050cadf38a74ee",
+    ".dockerignore": "3f72003aa33b2765a467e021b301051d18b1388cf28982bdc5a1e2b10346ec72",
+    ".gcloudignore": "92592ef2e706417b8afce803f0ad702d44319c23d7b805cde39e310236f3f001",
+    ".github/workflows/deploy-cloud-run.yml": "d1451292f0d488844df985ba381aa45f33af97669bdaffa88a630c1c70e9748d",
     ".github/workflows/vocabulary-ci.yml": "7ad5dfd412f377933a702dd09ae04001024781c94aeb3e4d8502cd0478fbfeec",
     ".gitignore": "949f68c165783252d10c2756496132ce5a1b6589ca567aa7c754c972ac564ccd",
     "Dockerfile": "7bb45fc4b05f0c86acadb540f989484617a0a299f9992e9ceffee65cb0b1bb79",
-    "README.md": "f94fba35ec625ca118a261edc523c5e494618b69bb12029d6e575bf7eadcf53d",
+    "README.md": "d770d126bf10ca5b09a011702f33e65d5343622e45eea2d42b5e8416caae7494",
     "docs/ROADMAP.md": "8aaa34bf1d6b3c5eed194ae7565e21e9414c2a221c9196fac8cbb4cede9f54d0",
     "docs/app.js": "83cf6ce9a19fee28802117bc57f7c123699ffb157b5275cf04f1b3972ef21d9b",
     "docs/data/chunks/01-fruits.json": "c0c7f3e446887b101890d9f70ad330914ab2a85115d8aa7eedcb60b4f7bfc8f5",
@@ -64,7 +66,7 @@
     "scripts/vocabulary-paths.mjs": "1ff45ea4174ce1bfedbd34b483eb9a01b856967da6e3dbd693e62f1c108bc9db",
     "server.py": "6e10e7d4d92f23200f8f67641e70a70e30555f3493727518629f1236e2ad6e35",
     "sprakverkstan/__init__.py": "7975ca32cde9fb13d7f5e06b1457cd1872cf8c4bac95ada552c27f7e0e8dbd84",
-    "sprakverkstan/config.py": "e3f02f7595bcf669d472c325ebf740593ac5bae6fed41dbf7cdd5e35ea1ccd7a",
+    "sprakverkstan/config.py": "4664ad33ab765205062311331f25e56e54a930ff85d83f6703bf298c112edbc5",
     "sprakverkstan/extensions.py": "d72ede1a548f83d47c8e1c54b6ca9f4cdb89fa9025a4d4c4734f71e63412827e",
     "sprakverkstan/migrations/__init__.py": "a48f204392ec30e50f473c0322918908eb8804083af3f28e297bd5858000442a",
     "sprakverkstan/migrations/v0001_vocabulary.py": "f464f27746ed17a21affca89768cae52f102e1946949332c47031b796ca5c9bc",
@@ -82,9 +84,10 @@
     "sprakverkstan/routes/auth.py": "bee689cdf874a44851bc8514a4e1c93a718419e9ed1370342c32da99285f8edf",
     "sprakverkstan/vocabulary_lookup.py": "c7b52846884cb8156cafb01d184ef77320dcc566daaf9a9655feacdc4cef61dd",
     "tests/test_auth_api.py": "b2e3967fb174317b96dc5f05648bffbd3c3a308316bf859296ad281276482071",
+    "tests/test_config.py": "b7714e0d4713ec46e0c32986dc0d380032d69d56c39fdc7f894fb20c77aa7663",
     "tests/test_vocabulary_api.py": "9c9158f310c3d6d71cec3b4d2e606e1f8e157fae044b7b3f854cd61f7b8fa5a7"
   },
-  "source_revision": "d7330f5b80320191fd961738f56102673c7dbf26",
+  "source_revision": "bbc31b1cf56531d3fe1649f9074c563650c8e5c8",
   "stale_sections": [],
   "symbols": {
     "sprakverkstan/__init__.py": {
@@ -94,8 +97,9 @@
       ]
     },
     "sprakverkstan/config.py": {
-      "sha256": "e3f02f7595bcf669d472c325ebf740593ac5bae6fed41dbf7cdd5e35ea1ccd7a",
+      "sha256": "4664ad33ab765205062311331f25e56e54a930ff85d83f6703bf298c112edbc5",
       "symbols": [
+        "_normalize_database_url",
         "Config"
       ]
     },
@@ -145,6 +149,6 @@
       ]
     }
   },
-  "updated_at": "2026-10-26T21:03:57+00:00",
-  "version": "1.2.0"
+  "updated_at": "2026-10-28T06:58:51+00:00",
+  "version": "1.3.0"
 }

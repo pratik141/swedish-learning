@@ -40,6 +40,14 @@ class VocabularyApiTests(unittest.TestCase):
             db.engine.dispose()
         self.temp_directory.cleanup()
 
+    def register_user(self):
+        response = self.client.post("/api/register", json={
+            "name": "Test learner",
+            "email": "learner@example.com",
+            "password": "secure-pass-123",
+        })
+        self.assertEqual(response.status_code, 201)
+
     def test_initial_migration_imports_complete_dataset_once(self):
         self.assertEqual(self.migration_results[0]["imported"], 760)
         self.assertFalse(self.migration_results[0]["already_applied"])
@@ -59,6 +67,7 @@ class VocabularyApiTests(unittest.TestCase):
             self.assertEqual(db.session.query(LearningContent).count(), 3)
 
     def test_api_serves_only_requested_vocabulary(self):
+        self.register_user()
         category = self.client.get("/api/vocabulary?category=01-fruits")
         self.assertEqual(category.status_code, 200)
         self.assertEqual(category.json["count"], 20)
@@ -92,6 +101,7 @@ class VocabularyApiTests(unittest.TestCase):
         self.assertEqual(self.client.get("/api/vocabulary?category=../../users").status_code, 400)
 
     def test_learning_documents_come_from_database(self):
+        self.register_user()
         manifest = self.client.get("/api/manifest")
         self.assertEqual(manifest.status_code, 200)
         self.assertNotIn("notes", manifest.json)
@@ -123,6 +133,7 @@ class VocabularyApiTests(unittest.TestCase):
         self.assertEqual(self.client.get("/data/grammar.json").status_code, 404)
 
     def test_situations_expansion_migration_adds_missing_scenarios_once(self):
+        self.register_user()
         with self.app.app_context():
             content = db.session.get(LearningContent, "situations")
             content.data = content.data[:10]
@@ -139,6 +150,7 @@ class VocabularyApiTests(unittest.TestCase):
         self.assertTrue(repeated["already_applied"])
 
     def test_external_open_licensed_words_are_separate_and_attributed(self):
+        self.register_user()
         item = {
             "id": 1000001,
             "sv": "provord",
@@ -163,7 +175,57 @@ class VocabularyApiTests(unittest.TestCase):
         self.assertEqual(external.json["items"][0]["sv"], "provord")
         self.assertNotIn("example", external.json["items"][0])
 
+    def test_guest_access_is_limited_to_free_vocabulary_and_grammar(self):
+        manifest = self.client.get("/api/manifest")
+        self.assertEqual(manifest.json["meta"]["total"], 20)
+        self.assertEqual(len(manifest.json["chapters"]), 1)
+        self.assertEqual(manifest.json["chapters"][0]["slug"], "20-essential-everyday-expressions")
+        self.assertEqual(manifest.headers["Cache-Control"], "private, no-store")
+
+        free_words = self.client.get("/api/vocabulary?all=true&limit=100")
+        self.assertEqual(free_words.status_code, 200)
+        self.assertEqual(free_words.json["count"], 20)
+        self.assertEqual({word["id"] for word in free_words.json["items"]}, set(range(610, 630)))
+
+        restricted_category = self.client.get("/api/vocabulary?category=01-fruits&limit=100")
+        self.assertEqual(restricted_category.json["count"], 0)
+        restricted_ids = self.client.get("/api/vocabulary?ids=1,610,611,999")
+        self.assertEqual([word["id"] for word in restricted_ids.json["items"]], [610, 611])
+
+        with patch("sprakverkstan.routes.api.search_wikidata_lexemes") as lookup:
+            online_search = self.client.get("/api/vocabulary?category=20-essential-everyday-expressions&q=unlisted")
+        self.assertEqual(online_search.json["count"], 0)
+        lookup.assert_not_called()
+
+        grammar = self.client.get("/api/grammar")
+        free_lessons = [
+            lesson
+            for group in grammar.json
+            for lesson in group["lessons"]
+        ]
+        self.assertEqual(
+            {lesson["title"] for lesson in free_lessons},
+            {"En and ett gender", "Present tense", "V2 main-clause order"},
+        )
+        self.assertEqual(self.client.get("/api/situations").status_code, 401)
+
+    def test_signed_in_user_gets_full_learning_library(self):
+        self.register_user()
+        manifest = self.client.get("/api/manifest")
+        self.assertEqual(manifest.json["meta"]["total"], 760)
+        self.assertGreater(len(manifest.json["chapters"]), 1)
+
+        all_words = self.client.get("/api/vocabulary?all=true&limit=100")
+        self.assertEqual(all_words.json["count"], 760)
+        self.assertEqual(len(all_words.json["items"]), 100)
+
+        grammar = self.client.get("/api/grammar")
+        lesson_count = sum(len(group["lessons"]) for group in grammar.json)
+        self.assertGreater(lesson_count, 3)
+        self.assertEqual(self.client.get("/api/situations").status_code, 200)
+
     def test_missing_search_word_is_fetched_from_wikidata_and_saved(self):
+        self.register_user()
         lexemes = [{
             "lexeme_uri": "https://www.wikidata.org/entity/L123456",
             "lemma": "sällsynt",
@@ -192,6 +254,7 @@ class VocabularyApiTests(unittest.TestCase):
         lookup.assert_not_called()
 
     def test_missing_search_word_reports_wikidata_failure(self):
+        self.register_user()
         with patch(
             "sprakverkstan.routes.api.search_wikidata_lexemes",
             side_effect=WikidataLookupError("Wikidata is unavailable"),

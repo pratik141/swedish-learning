@@ -64,8 +64,8 @@ jobs:
           --region "$REGION"
           --image "$IMAGE"
           --allow-unauthenticated
-          --set-env-vars COOKIE_SECURE=true,DATABASE_URL=sqlite:////app/instance/sprakverkstan.db
-          --set-secrets SECRET_KEY=SECRET_KEY:latest
+          --set-env-vars COOKIE_SECURE=true
+          --set-secrets SECRET_KEY=SECRET_KEY:latest,DATABASE_URL=DATABASE_URL:latest
 
       - name: Report service URL
         run: |

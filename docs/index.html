@@ -10,23 +10,30 @@
 </head>
 <body>
   <header class="topbar">
-    <div class="brandmark" aria-hidden="true">SV</div>
-    <div>
-      <p class="eyebrow">Swedish learning studio · Svenska → English → हिन्दी</p>
-      <h1>Build Swedish you can use.</h1>
-      <p class="lede">A calm, practical workspace for vocabulary, grammar, pronunciation, sentence forming, and quick tests.</p>
+    <a class="brand" href="/" aria-label="Språkverkstan home">
+      <span class="brandmark" aria-hidden="true">SV</span>
+      <span class="brand-copy">
+        <strong>Språkverkstan</strong>
+        <small>Swedish learning studio</small>
+      </span>
+    </a>
+    <div class="header-message">
+      <span class="online-dot" aria-hidden="true"></span>
+      <span>A shared space for learners &amp; educators</span>
     </div>
     <div class="header-actions">
-      <button class="profile-toggle" id="profileToggle" type="button" aria-expanded="false">Profile</button>
+      <button class="profile-toggle" id="profileToggle" type="button" aria-expanded="false" aria-controls="profilePanel">Sign in</button>
       <button class="theme-toggle" id="themeToggle" type="button" aria-pressed="false">Dark theme</button>
     </div>
   </header>
 
-  <aside class="profile-panel" id="profilePanel" hidden>
+  <button class="profile-backdrop" id="profileBackdrop" type="button" aria-label="Close sign-in panel" hidden></button>
+  <aside class="profile-panel" id="profilePanel" role="dialog" aria-modal="true" aria-labelledby="profileTitle" hidden>
     <div class="profile-panel-header">
       <div>
-        <p class="eyebrow">Your study profile</p>
-        <h2 id="profileTitle">Sign in</h2>
+        <p class="eyebrow">Your learning space</p>
+        <h2 id="profileTitle">Create your free account</h2>
+        <p class="auth-intro">Save your progress and unlock every word, lesson, and practice activity.</p>
       </div>
       <button type="button" class="close-panel" id="closeProfile" aria-label="Close profile panel">Close</button>
     </div>
@@ -40,24 +47,71 @@
 
     <form id="profileForm" class="profile-form">
       <label id="profileNameField">
-        Full name
+        Your name
         <input id="profileNameInput" type="text" placeholder="Your name" autocomplete="name" required>
       </label>
       <label>
-        Email
+        Email address
         <input id="profileEmailInput" type="email" placeholder="you@example.com" autocomplete="email" required>
       </label>
       <label>
         Password
-        <input id="profilePasswordInput" type="password" placeholder="Create a password" autocomplete="new-password" required>
+        <input id="profilePasswordInput" type="password" placeholder="At least 8 characters" autocomplete="new-password" required>
       </label>
-      <button type="submit" class="primary-button">Save profile</button>
-      <button type="button" id="profileModeToggle" class="text-button">Already have an account? Sign in</button>
+      <button type="submit" class="primary-button auth-submit">Create free account</button>
+      <p class="auth-switch"><span id="profileModeHint">Already learning with us?</span> <button type="button" id="profileModeToggle" class="text-button">Sign in</button></p>
       <p id="profileStatus" class="profile-status" aria-live="polite"></p>
     </form>
   </aside>
 
   <main>
+    <section class="welcome-hero" aria-labelledby="welcomeTitle">
+      <div class="welcome-copy">
+        <p class="eyebrow"><span class="eyebrow-mark" aria-hidden="true">✦</span> PRACTICAL SWEDISH, STEP BY STEP</p>
+        <h1 id="welcomeTitle">Speak Swedish<br><span>with confidence.</span></h1>
+        <p class="welcome-lede">Build everyday vocabulary, make sense of grammar, and practise speaking — in a clear learning space for you or your class.</p>
+        <div class="welcome-actions">
+          <button class="primary-button welcome-primary" type="button" data-dashboard-tab="vocabulary">Start learning <span aria-hidden="true">→</span></button>
+          <button class="welcome-secondary" type="button" data-dashboard-tab="grammar">Explore grammar</button>
+        </div>
+        <p class="audience-note">Made for self-study, tutoring, and classroom warm-ups.</p>
+      </div>
+      <div class="learning-path" aria-label="A simple learning path">
+        <div class="path-heading"><span class="path-icon" aria-hidden="true">✳</span><div><strong>Your learning path</strong><small>Build a little every day</small></div></div>
+        <div class="path-step"><span class="path-number">01</span><span><strong>Learn</strong><small>Useful everyday words</small></span><span class="path-arrow" aria-hidden="true">↘</span></div>
+        <div class="path-step"><span class="path-number">02</span><span><strong>Understand</strong><small>Simple grammar patterns</small></span><span class="path-arrow" aria-hidden="true">↘</span></div>
+        <div class="path-step"><span class="path-number">03</span><span><strong>Use it</strong><small>Speak, practise, remember</small></span><span class="path-check" aria-hidden="true">✓</span></div>
+        <div class="path-footer"><span class="online-dot" aria-hidden="true"></span><span id="pathFooterText">Start with 20 free beginner phrases</span></div>
+      </div>
+    </section>
+
+    <div class="section-heading">
+      <div><p class="eyebrow">YOUR LEARNING STUDIO</p><h2>What would you like to practise?</h2></div>
+      <p>Choose a starting point. You can switch activities whenever you like.</p>
+    </div>
+    <nav class="quick-start" aria-label="Quick start activities">
+      <button class="quick-start-card" type="button" data-dashboard-tab="vocabulary">
+        <span class="quick-card-icon vocabulary-icon" aria-hidden="true">Aa</span>
+        <span class="quick-card-copy"><strong>Everyday words</strong><small>Browse and hear useful Swedish</small></span>
+        <span class="quick-card-arrow" aria-hidden="true">→</span>
+      </button>
+      <button class="quick-start-card" type="button" data-dashboard-tab="grammar">
+        <span class="quick-card-icon grammar-icon" aria-hidden="true">文</span>
+        <span class="quick-card-copy"><strong>Grammar, made clear</strong><small>Learn patterns with examples</small></span>
+        <span class="quick-card-arrow" aria-hidden="true">→</span>
+      </button>
+      <button class="quick-start-card" type="button" data-dashboard-tab="pronunciation">
+        <span class="quick-card-icon speaking-icon" aria-hidden="true">♫</span>
+        <span class="quick-card-copy"><strong>Listen &amp; speak</strong><small>Build a feel for Swedish sounds</small></span>
+        <span class="quick-card-arrow" aria-hidden="true">→</span>
+      </button>
+      <button class="quick-start-card" type="button" data-dashboard-tab="practice">
+        <span class="quick-card-icon practice-icon" aria-hidden="true">✓</span>
+        <span class="quick-card-copy"><strong>Check your progress</strong><small>Short, friendly practice tests</small></span>
+        <span class="quick-card-arrow" aria-hidden="true">→</span>
+      </button>
+    </nav>
+
     <nav class="study-tabs" aria-label="Study modes" role="tablist">
       <button class="study-tab active" id="tab-vocabulary" data-tab="vocabulary" role="tab" aria-selected="true">Vocabulary</button>
       <button class="study-tab" id="tab-grammar" data-tab="grammar" role="tab" aria-selected="false">Grammar</button>
@@ -67,6 +121,13 @@
       <button class="study-tab" id="tab-review" data-tab="review" role="tab" aria-selected="false">Review</button>
       <button class="study-tab" id="tab-situations" data-tab="situations" role="tab" aria-selected="false">Situations</button>
     </nav>
+    <aside id="membershipNotice" class="membership-notice" hidden>
+      <div>
+        <strong id="membershipNoticeTitle">Free beginner access</strong>
+        <p id="membershipNoticeText"></p>
+      </div>
+      <button class="primary-button" id="membershipPrompt" type="button">Sign in or create account</button>
+    </aside>
 
     <section class="study-panel tab-panel" id="panel-vocabulary" data-panel="vocabulary" role="tabpanel" aria-labelledby="tab-vocabulary">
       <div class="panel-head">
